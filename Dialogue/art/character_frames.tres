@@ -1,0 +1,61 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://be8l72qxbjduy"]
+
+[ext_resource type="Texture2D" uid="uid://b3kkj2blmn4dd" path="res://Dialogue/art/CharacterPortrait.png" id="1_1vu3v"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vh7iq"]
+atlas = ExtResource("1_1vu3v")
+region = Rect2(0, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xsiu1"]
+atlas = ExtResource("1_1vu3v")
+region = Rect2(512, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_crrc0"]
+atlas = ExtResource("1_1vu3v")
+region = Rect2(512, 0, 512, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uiruc"]
+atlas = ExtResource("1_1vu3v")
+region = Rect2(1024, 0, 512, 512)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vh7iq")
+}],
+"loop": false,
+"name": &"default",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xsiu1")
+}],
+"loop": true,
+"name": &"neutral",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_crrc0")
+}, {
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_uiruc")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_crrc0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uiruc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_crrc0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uiruc")
+}],
+"loop": true,
+"name": &"talking",
+"speed": 12.0
+}]
