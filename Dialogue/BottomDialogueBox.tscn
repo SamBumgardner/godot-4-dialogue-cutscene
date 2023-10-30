@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://c3an4qnehl8ga"]
+[gd_scene load_steps=8 format=3 uid="uid://c3an4qnehl8ga"]
 
 [ext_resource type="Texture2D" uid="uid://dnkl2ckxikvtq" path="res://Dialogue/art/NinePatchRect.png" id="1_o4v27"]
 [ext_resource type="Script" path="res://Dialogue/BottomDialogueBox.gd" id="1_xwk3p"]
 [ext_resource type="SpriteFrames" uid="uid://be8l72qxbjduy" path="res://Dialogue/art/character_frames.tres" id="2_us6tt"]
 [ext_resource type="Script" path="res://Dialogue/Dialogue.gd" id="4_ccsuf"]
 [ext_resource type="AudioStream" uid="uid://wv708m68fre2" path="res://Dialogue/sound/new_audio_stream_randomizer.tres" id="5_vjy6w"]
+[ext_resource type="Texture2D" uid="uid://stwbcecneeas" path="res://Dialogue/art/dialogue_advance_arrow.png" id="6_cdbkq"]
+[ext_resource type="Script" path="res://Dialogue/DialogueAdvanceArrow.gd" id="7_asfij"]
 
 [node name="BottomDialogueBox" type="Control"]
 layout_mode = 3
@@ -75,3 +77,20 @@ script = ExtResource("4_ccsuf")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="NinePatchRect/TextAnchor/Dialogue"]
 stream = ExtResource("5_vjy6w")
 volume_db = -14.023
+
+[node name="DialogueAdvanceArrow" type="TextureRect" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -88.0
+offset_top = -85.0
+offset_right = -24.0
+offset_bottom = -21.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("6_cdbkq")
+script = ExtResource("7_asfij")

@@ -4,6 +4,7 @@ const SEC_PER_CHAR : float = .050
 const END_OF_SENTENCE_PAUSE : float = .15
 
 @onready var dialogue_label : Label = $NinePatchRect/TextAnchor/Dialogue
+@onready var text_appear_tween : Tween
 
 var dialogue_units : Array[DialogueUnit] = []
 var animation_during_step : Array[String] = []
@@ -16,13 +17,25 @@ var dialogue_text : String = "|2|This is a sample dialogue. I wonder how we shou
 func _ready():
 	_display_dialogue(dialogue_text)
 
+func _input(event):
+	if event.is_action_pressed("ui_accept"):
+		attempt_dialogue_advance()
+
+func attempt_dialogue_advance():
+	if text_appear_tween != null and text_appear_tween.is_running():
+		text_appear_tween.custom_step(1000)
+	elif text_appear_tween != null and !text_appear_tween.is_running():
+		_display_dialogue(dialogue_text)
+
 func _display_dialogue(text : String) -> void:
+	$NinePatchRect/DialogueAdvanceArrow.hide()
+	
 	_parse_dialogue(text)
 	animation_during_step.clear()
 	var text_to_show = ""
 	dialogue_label.visible_characters = 0
 	
-	var text_appear_tween : Tween = create_tween()
+	text_appear_tween = create_tween()
 	text_appear_tween.step_finished.connect(_dialogue_tween_step_finished)
 	for i in dialogue_units.size():
 		var unit : DialogueUnit = dialogue_units[i]
@@ -37,6 +50,8 @@ func _display_dialogue(text : String) -> void:
 		if unit.delay_after > 0:
 			animation_during_step.push_back("neutral")
 			text_appear_tween.tween_interval(unit.delay_after)
+	
+	text_appear_tween.finished.connect($NinePatchRect/DialogueAdvanceArrow.show)
 	
 	dialogue_label.text = text_to_show
 	animation_during_step.push_back("default")
