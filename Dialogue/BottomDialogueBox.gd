@@ -53,7 +53,7 @@ func _parse_dialogue(text : String) -> void:
 	var meta_and_text : PackedStringArray = text.split("|", false)
 	for i in range(0, meta_and_text.size(), 2):
 		var regex = RegEx.new()
-		var err = regex.compile("[^.]*[.!?]+")
+		regex.compile("[^.]*[.!?]+")
 		var sentences = regex.search_all(meta_and_text[i + 1])
 		var starting_point = 0
 		var sentence_i = 0

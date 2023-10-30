@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://c3an4qnehl8ga"]
+[gd_scene load_steps=6 format=3 uid="uid://c3an4qnehl8ga"]
 
 [ext_resource type="Texture2D" uid="uid://dnkl2ckxikvtq" path="res://Dialogue/art/NinePatchRect.png" id="1_o4v27"]
 [ext_resource type="Script" path="res://Dialogue/BottomDialogueBox.gd" id="1_xwk3p"]
 [ext_resource type="SpriteFrames" uid="uid://be8l72qxbjduy" path="res://Dialogue/art/character_frames.tres" id="2_us6tt"]
+[ext_resource type="Script" path="res://Dialogue/Dialogue.gd" id="4_ccsuf"]
+[ext_resource type="AudioStream" uid="uid://wv708m68fre2" path="res://Dialogue/sound/new_audio_stream_randomizer.tres" id="5_vjy6w"]
 
 [node name="BottomDialogueBox" type="Control"]
 layout_mode = 3
@@ -41,6 +43,7 @@ z_index = -1
 position = Vector2(0, 9)
 scale = Vector2(0.5, 0.5)
 sprite_frames = ExtResource("2_us6tt")
+animation = &"talking"
 centered = false
 offset = Vector2(0, -512)
 
@@ -67,3 +70,8 @@ With this sizing, we can fit a total of 4 lines. Who knows how well this would w
 autowrap_mode = 2
 clip_text = true
 max_lines_visible = 4
+script = ExtResource("4_ccsuf")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="NinePatchRect/TextAnchor/Dialogue"]
+stream = ExtResource("5_vjy6w")
+volume_db = -14.023
