@@ -1,6 +1,5 @@
 extends Label
 
-@onready var dialogue_randomizer = preload("res://Dialogue/sound/new_audio_stream_randomizer.tres")
 var not_whitespace_regex : RegEx = RegEx.new()
 
 

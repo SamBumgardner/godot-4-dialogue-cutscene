@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="DialogueCharacter" load_steps=4 format=3 uid="uid://cod50x8i372ve"]
+
+[ext_resource type="SpriteFrames" uid="uid://be8l72qxbjduy" path="res://Dialogue/art/character_frames.tres" id="1_sw7di"]
+[ext_resource type="Script" path="res://Dialogue/DialogueCharacter.gd" id="2_0hp63"]
+[ext_resource type="AudioStream" uid="uid://c8vb06cukmari" path="res://Dialogue/sound/voice_blip_low.wav" id="3_pseda"]
+
+[resource]
+script = ExtResource("2_0hp63")
+name = "Gerald"
+animations = ExtResource("1_sw7di")
+voice = ExtResource("3_pseda")

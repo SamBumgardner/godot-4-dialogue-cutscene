@@ -3,7 +3,11 @@ extends Control
 const SEC_PER_CHAR : float = .050
 const END_OF_SENTENCE_PAUSE : float = .15
 
+@export var character_0 : DialogueCharacter
+@export var character_1 : DialogueCharacter
+
 @onready var dialogue_label : Label = $NinePatchRect/TextAnchor/Dialogue
+@onready var audio_stream_randomizer = $NinePatchRect/TextAnchor/Dialogue/AudioStreamPlayer.stream
 @onready var text_appear_tween : Tween
 
 var dialogue_units : Array[DialogueUnit] = []
@@ -13,9 +17,18 @@ var dialogue_text : String = "|2|This is a sample dialogue. I wonder how we shou
 
 |1|With this sizing|.15,0,1,neutral|...|1| we can fit a total of 4 lines. Who knows how well this would work."
 
+var dialogue_script : PackedStringArray
+var current_script_i : int
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	_display_dialogue(dialogue_text)
+	$NinePatchRect/DialogueEdgeAnchor/AnimatedPortrait.sprite_frames = character_0.animations
+	audio_stream_randomizer.add_stream(0, character_0.voice, 1)
+	
+	dialogue_script = PackedStringArray([dialogue_text, "|1|Maybe I have more interesting things to say?", "|3|I don't think so."])
+	current_script_i = 0
+	
+	_display_dialogue(dialogue_script[current_script_i])
 
 func _input(event):
 	if event.is_action_pressed("ui_accept"):
@@ -25,7 +38,8 @@ func attempt_dialogue_advance():
 	if text_appear_tween != null and text_appear_tween.is_running():
 		text_appear_tween.custom_step(1000)
 	elif text_appear_tween != null and !text_appear_tween.is_running():
-		_display_dialogue(dialogue_text)
+		current_script_i = (current_script_i + 1) % dialogue_script.size()
+		_display_dialogue(dialogue_script[current_script_i])
 
 func _display_dialogue(text : String) -> void:
 	$NinePatchRect/DialogueAdvanceArrow.hide()
