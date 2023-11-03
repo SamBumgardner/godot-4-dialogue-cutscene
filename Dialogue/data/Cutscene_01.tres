@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="DialogueCutsceneData" load_steps=3 format=3 uid="uid://bpdxyul1gg2s0"]
+
+[ext_resource type="Script" path="res://Dialogue/DialogueCutsceneData.gd" id="1_rdgnx"]
+[ext_resource type="Resource" uid="uid://cod50x8i372ve" path="res://Dialogue/data/DialogueCharacter_Gerald.tres" id="1_who7j"]
+
+[resource]
+script = ExtResource("1_rdgnx")
+characters = Array[Resource("res://Dialogue/DialogueCharacter.gd")]([ExtResource("1_who7j")])
+dialogue_script = PackedStringArray("|2|This is a sample dialogue. I wonder how we should handle positioning for text that doesn\'t fill the entire dialogue box.\n\n|1|With this sizing|.15,0,1,neutral|...|1| we can fit a total of 4 lines. Who knows how well this would work.", "|1|Maybe I have more interesting things to say?", "|3|I don\'t think so.")
