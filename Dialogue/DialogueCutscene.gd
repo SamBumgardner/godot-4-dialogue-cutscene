@@ -16,9 +16,9 @@ func _ready():
 	$Characters/AnimatedPortrait.sprite_frames = cutscene.characters[0].animations
 	audio_stream_randomizer.add_stream(0, cutscene.characters[0].voice, 1)
 	
-	dialogue_display.dialogue_label.text_revealed.connect(_on_text_revealed, CONNECT_DEFERRED)
+	dialogue_display.dialogue_label.non_whitespace_char_revealed.connect(_on_text_revealed, CONNECT_DEFERRED)
+	dialogue_display.dialogue_label.is_talking_changed.connect(_on_is_talking_changed, CONNECT_DEFERRED)
 	dialogue_display.starting_dialogue_unit.connect(_on_starting_dialogue_unit)
-	
 	current_script_page = -1
 	_attempt_scene_advance()
 
@@ -58,12 +58,15 @@ func _attempt_scene_advance() -> void:
 
 func _on_text_revealed():
 	$AudioStreamPlayer.play()
+	# tell mouth to animate movement
 
-func _on_starting_dialogue_unit(starting_step_i : int, is_delay : bool) -> void:
-	if is_delay:
+func _on_starting_dialogue_unit(starting_step_i : int) -> void:
+	current_unit_i = starting_step_i
+
+func _on_is_talking_changed(is_talking : bool) -> void:
+	if !is_talking:
 		_animate_talking("neutral")
 	else:
-		current_unit_i += 1
 		_animate_talking(dialogue_units[current_unit_i].animation_name)
 
 func _animate_talking(animation_name : String) -> void:
