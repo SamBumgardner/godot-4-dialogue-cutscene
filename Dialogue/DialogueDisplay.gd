@@ -11,6 +11,10 @@ const SEC_PER_CHAR : float = .05
 
 var current_dialogue_unit : int
 
+func reset() -> void:
+	dialogue_label.text = ""
+	$DialogueAdvanceArrow.hide()
+
 func attempt_dialogue_advance() -> bool:
 	if text_appear_tween != null and text_appear_tween.is_running():
 		text_appear_tween.custom_step(1000)

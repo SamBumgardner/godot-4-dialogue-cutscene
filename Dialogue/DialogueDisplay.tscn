@@ -49,6 +49,7 @@ max_lines_visible = 4
 script = ExtResource("3_freqs")
 
 [node name="DialogueAdvanceArrow" type="TextureRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0

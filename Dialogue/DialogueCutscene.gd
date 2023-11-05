@@ -3,6 +3,7 @@ extends Control
 signal cutscene_finished
 
 const END_OF_SENTENCE_PAUSE : float = .15
+const FADE_DURATION : float = .25
 
 @export var cutscene : DialogueCutsceneData
 @onready var audio_stream_randomizer : AudioStreamRandomizer = $AudioStreamPlayer.stream
@@ -10,20 +11,45 @@ const END_OF_SENTENCE_PAUSE : float = .15
 
 var characters : Dictionary
 
+var fading_out : bool = false
 var current_script_page : int
 var dialogue_units : Array[DialogueUnit]
 var current_unit_i = 0
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	for character in cutscene.characters:
-		characters[character.name] = character
-	
 	dialogue_display.dialogue_label.non_whitespace_char_revealed.connect(_on_text_revealed, CONNECT_DEFERRED)
 	dialogue_display.dialogue_label.is_talking_changed.connect(_on_is_talking_changed, CONNECT_DEFERRED)
 	dialogue_display.starting_dialogue_unit.connect(_on_starting_dialogue_unit)
+	
+	if cutscene != null:
+		init_cutscene(cutscene)
+
+func init_cutscene(cutscene_data : DialogueCutsceneData):
+	cutscene = cutscene_data
+	for character in cutscene.characters:
+		characters[character.name] = character
+	
 	current_script_page = -1
-	_attempt_scene_advance()
+
+func fade_in():
+	fading_out = false
+	visible = true
+	modulate = Color.TRANSPARENT
+	_change_displayed_character(cutscene.dialogue_script[0].get_slice("|", 0))
+	dialogue_display.reset()
+	
+	var fade_in_tween = create_tween() 
+	fade_in_tween.tween_property(self, "modulate", Color.WHITE, FADE_DURATION)
+	fade_in_tween.tween_callback(_attempt_scene_advance)
+
+func fade_out():
+	fading_out = true
+	visible = true
+	modulate = Color.WHITE
+	var fade_out_tween = create_tween()
+	fade_out_tween.tween_property(self, "modulate", Color.TRANSPARENT, FADE_DURATION) 
+	fade_out_tween.tween_property(self, "visible", false, 0) 
+	fade_out_tween.tween_callback(emit_signal.bind("cutscene_finished"))
 
 func _parse_script_page(text : String) -> Array[DialogueUnit]:
 	var units : Array[DialogueUnit] = []
@@ -47,7 +73,7 @@ func _parse_script_page(text : String) -> Array[DialogueUnit]:
 	return units
 
 func _input(event):
-	if event.is_action_pressed("ui_accept"):
+	if event.is_action_pressed("ui_accept") && cutscene != null && !fading_out:
 		_attempt_scene_advance()
 
 func _attempt_scene_advance() -> void:
@@ -61,8 +87,8 @@ func _attempt_scene_advance() -> void:
 			_change_displayed_character(cutscene.dialogue_script[current_script_page].get_slice("|", 0))
 			dialogue_units = _parse_script_page(cutscene.dialogue_script[current_script_page])
 			dialogue_display.display_dialogue(dialogue_units)
-		else:
-			cutscene_finished.emit()
+		elif visible:
+			fade_out()
 
 func _on_text_revealed():
 	$AudioStreamPlayer.play()
@@ -81,9 +107,9 @@ func _on_is_talking_changed(is_talking : bool) -> void:
 func _animate_talking(animation_name : String) -> void:
 	$Characters/AnimatedPortrait.play(animation_name)
 
-func _change_displayed_character(name : String) -> void:
-	$DialogueContainer/NameTag/MarginContainer/CharacterName.text = name
-	$Characters/AnimatedPortrait.sprite_frames = characters[name].animations
+func _change_displayed_character(character_name : String) -> void:
+	$DialogueContainer/NameTag/MarginContainer/CharacterName.text = character_name
+	$Characters/AnimatedPortrait.sprite_frames = characters[character_name].animations
 	if audio_stream_randomizer.streams_count > 0:
 		audio_stream_randomizer.remove_stream(0)
-	audio_stream_randomizer.add_stream(0, characters[name].voice, 1)
+	audio_stream_randomizer.add_stream(0, characters[character_name].voice, 1)

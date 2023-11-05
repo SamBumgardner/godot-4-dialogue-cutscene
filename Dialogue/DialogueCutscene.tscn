@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://cwyu2ghreykrb"]
+[gd_scene load_steps=6 format=3 uid="uid://cwyu2ghreykrb"]
 
 [ext_resource type="Script" path="res://Dialogue/DialogueCutscene.gd" id="1_edn8v"]
-[ext_resource type="Resource" uid="uid://bpdxyul1gg2s0" path="res://Dialogue/data/Cutscene_01.tres" id="2_85xi3"]
 [ext_resource type="PackedScene" uid="uid://slar1ieetoeo" path="res://Dialogue/DialogueDisplay.tscn" id="4_6k3nq"]
 [ext_resource type="SpriteFrames" uid="uid://be8l72qxbjduy" path="res://Dialogue/art/character_frames.tres" id="4_8cmcx"]
 [ext_resource type="Texture2D" uid="uid://ybeexlyr6f4w" path="res://Dialogue/art/NameTagRect.png" id="4_uyn7j"]
@@ -15,7 +14,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_edn8v")
-cutscene = ExtResource("2_85xi3")
 
 [node name="Characters" type="Control" parent="."]
 layout_mode = 1
