@@ -66,7 +66,7 @@ func _parse_script_page(text : String) -> Array[DialogueUnit]:
 			unit.delay_before = 0
 			var last_char =  meta_and_text[i + 1].substr(end_index - 1, 1)
 			if ",.!?".contains(last_char):
-				unit.delay_after = END_OF_SENTENCE_PAUSE
+				unit.delay_after = max(END_OF_SENTENCE_PAUSE, unit.delay_after)
 			units.append(unit)
 			starting_point = end_index
 			sentence_i += 1
