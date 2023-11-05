@@ -1,10 +1,12 @@
 extends Control
 
+signal cutscene_finished
+
 const END_OF_SENTENCE_PAUSE : float = .15
 
 @export var cutscene : DialogueCutsceneData
 @onready var audio_stream_randomizer = $AudioStreamPlayer.stream
-@onready var dialogue_display : DialogueDisplay = $DialogueDisplay
+@onready var dialogue_display : DialogueDisplay = $NameTag/DialogueDisplay
 
 var animation_during_step : Array[String]
 var current_script_page : int
@@ -55,10 +57,11 @@ func _attempt_scene_advance() -> void:
 			current_unit_i = -1
 			dialogue_units = _parse_script_page(cutscene.dialogue_script[current_script_page])
 			dialogue_display.display_dialogue(dialogue_units)
+		else:
+			cutscene_finished.emit()
 
 func _on_text_revealed():
 	$AudioStreamPlayer.play()
-	# tell mouth to animate movement
 
 func _on_starting_dialogue_unit(starting_step_i : int) -> void:
 	current_unit_i = starting_step_i
