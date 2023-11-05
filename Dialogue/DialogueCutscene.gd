@@ -5,18 +5,19 @@ signal cutscene_finished
 const END_OF_SENTENCE_PAUSE : float = .15
 
 @export var cutscene : DialogueCutsceneData
-@onready var audio_stream_randomizer = $AudioStreamPlayer.stream
+@onready var audio_stream_randomizer : AudioStreamRandomizer = $AudioStreamPlayer.stream
 @onready var dialogue_display : DialogueDisplay = $NameTag/DialogueDisplay
 
-var animation_during_step : Array[String]
+var characters : Dictionary
+
 var current_script_page : int
 var dialogue_units : Array[DialogueUnit]
 var current_unit_i = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$Characters/AnimatedPortrait.sprite_frames = cutscene.characters[0].animations
-	audio_stream_randomizer.add_stream(0, cutscene.characters[0].voice, 1)
+	for character in cutscene.characters:
+		characters[character.name] = character
 	
 	dialogue_display.dialogue_label.non_whitespace_char_revealed.connect(_on_text_revealed, CONNECT_DEFERRED)
 	dialogue_display.dialogue_label.is_talking_changed.connect(_on_is_talking_changed, CONNECT_DEFERRED)
@@ -27,7 +28,7 @@ func _ready():
 func _parse_script_page(text : String) -> Array[DialogueUnit]:
 	var units : Array[DialogueUnit] = []
 	var meta_and_text : PackedStringArray = text.split("|", false)
-	for i in range(0, meta_and_text.size(), 2):
+	for i in range(1, meta_and_text.size(), 2):
 		var regex = RegEx.new()
 		regex.compile("[^.]*[.!?]+")
 		var sentences = regex.search_all(meta_and_text[i + 1])
@@ -55,6 +56,7 @@ func _attempt_scene_advance() -> void:
 		current_script_page += 1
 		if current_script_page < cutscene.dialogue_script.size():
 			current_unit_i = -1
+			_change_displayed_character(cutscene.dialogue_script[current_script_page].get_slice("|", 0))
 			dialogue_units = _parse_script_page(cutscene.dialogue_script[current_script_page])
 			dialogue_display.display_dialogue(dialogue_units)
 		else:
@@ -75,3 +77,8 @@ func _on_is_talking_changed(is_talking : bool) -> void:
 func _animate_talking(animation_name : String) -> void:
 	$Characters/AnimatedPortrait.play(animation_name)
 
+func _change_displayed_character(name : String) -> void:
+	$Characters/AnimatedPortrait.sprite_frames = characters[name].animations
+	if audio_stream_randomizer.streams_count > 0:
+		audio_stream_randomizer.remove_stream(0)
+	audio_stream_randomizer.add_stream(0, characters[name].voice, 1)
