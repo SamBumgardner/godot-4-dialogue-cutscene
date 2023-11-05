@@ -6,7 +6,7 @@ const END_OF_SENTENCE_PAUSE : float = .15
 
 @export var cutscene : DialogueCutsceneData
 @onready var audio_stream_randomizer : AudioStreamRandomizer = $AudioStreamPlayer.stream
-@onready var dialogue_display : DialogueDisplay = $NameTag/DialogueDisplay
+@onready var dialogue_display : DialogueDisplay = $DialogueContainer/DialogueDisplay
 
 var characters : Dictionary
 
@@ -30,7 +30,7 @@ func _parse_script_page(text : String) -> Array[DialogueUnit]:
 	var meta_and_text : PackedStringArray = text.split("|", false)
 	for i in range(1, meta_and_text.size(), 2):
 		var regex = RegEx.new()
-		regex.compile("[^.]*[.!?]+")
+		regex.compile("[^.]*[.!?,]+")
 		var sentences = regex.search_all(meta_and_text[i + 1])
 		var starting_point = 0
 		var sentence_i = 0
@@ -38,7 +38,9 @@ func _parse_script_page(text : String) -> Array[DialogueUnit]:
 			var end_index = sentences[sentence_i].get_end() if sentences.size() != sentence_i else meta_and_text[i + 1].length()
 			var unit = DialogueUnit.new(meta_and_text[i + 1].substr(starting_point, end_index - starting_point), meta_and_text[i])
 			unit.delay_before = 0
-			unit.delay_after = END_OF_SENTENCE_PAUSE
+			var last_char =  meta_and_text[i + 1].substr(end_index - 1, 1)
+			if ",.!?".contains(last_char):
+				unit.delay_after = END_OF_SENTENCE_PAUSE
 			units.append(unit)
 			starting_point = end_index
 			sentence_i += 1
@@ -65,8 +67,10 @@ func _attempt_scene_advance() -> void:
 func _on_text_revealed():
 	$AudioStreamPlayer.play()
 
-func _on_starting_dialogue_unit(starting_step_i : int) -> void:
-	current_unit_i = starting_step_i
+func _on_starting_dialogue_unit(starting_unit_i : int) -> void:
+	current_unit_i = starting_unit_i
+	if $Characters/AnimatedPortrait.is_playing():
+		_animate_talking(dialogue_units[current_unit_i].animation_name)
 
 func _on_is_talking_changed(is_talking : bool) -> void:
 	if !is_talking:
@@ -78,6 +82,7 @@ func _animate_talking(animation_name : String) -> void:
 	$Characters/AnimatedPortrait.play(animation_name)
 
 func _change_displayed_character(name : String) -> void:
+	$DialogueContainer/NameTag/MarginContainer/CharacterName.text = name
 	$Characters/AnimatedPortrait.sprite_frames = characters[name].animations
 	if audio_stream_randomizer.streams_count > 0:
 		audio_stream_randomizer.remove_stream(0)

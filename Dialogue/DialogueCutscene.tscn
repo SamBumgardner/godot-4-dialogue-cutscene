@@ -32,7 +32,7 @@ animation = &"talking"
 centered = false
 offset = Vector2(0, -512)
 
-[node name="NameTag" type="VBoxContainer" parent="."]
+[node name="DialogueContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -43,12 +43,12 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="NameTag"]
+[node name="NameTag" type="MarginContainer" parent="DialogueContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_constants/margin_left = 12
 
-[node name="NinePatchRect" type="NinePatchRect" parent="NameTag/MarginContainer"]
+[node name="NinePatchRect" type="NinePatchRect" parent="DialogueContainer/NameTag"]
 layout_mode = 2
 texture = ExtResource("4_uyn7j")
 patch_margin_left = 10
@@ -57,20 +57,20 @@ patch_margin_right = 10
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="NameTag/MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="DialogueContainer/NameTag"]
 layout_mode = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 16
 
-[node name="CharacterName" type="Label" parent="NameTag/MarginContainer/MarginContainer"]
+[node name="CharacterName" type="Label" parent="DialogueContainer/NameTag/MarginContainer"]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 24
 text = "Gerald"
 
-[node name="DialogueDisplay" parent="NameTag" instance=ExtResource("4_6k3nq")]
+[node name="DialogueDisplay" parent="DialogueContainer" instance=ExtResource("4_6k3nq")]
 layout_mode = 2
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
