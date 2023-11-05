@@ -56,7 +56,7 @@ func _parse_script_page(text : String) -> Array[DialogueUnit]:
 	var meta_and_text : PackedStringArray = text.split("|", false)
 	for i in range(1, meta_and_text.size(), 2):
 		var regex = RegEx.new()
-		regex.compile("[^.]*[.!?,]+")
+		regex.compile("[^.!?,]*[.!?,]+")
 		var sentences = regex.search_all(meta_and_text[i + 1])
 		var starting_point = 0
 		var sentence_i = 0
@@ -66,7 +66,10 @@ func _parse_script_page(text : String) -> Array[DialogueUnit]:
 			unit.delay_before = 0
 			var last_char =  meta_and_text[i + 1].substr(end_index - 1, 1)
 			if ",.!?".contains(last_char):
-				unit.delay_after = max(END_OF_SENTENCE_PAUSE, unit.delay_after)
+				if end_index >= meta_and_text[i + 1].length() - 1:
+					unit.delay_after = max(END_OF_SENTENCE_PAUSE, unit.delay_after)
+				else:
+					unit.delay_after = END_OF_SENTENCE_PAUSE
 			units.append(unit)
 			starting_point = end_index
 			sentence_i += 1
