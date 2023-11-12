@@ -104,12 +104,12 @@ func _on_starting_dialogue_unit(starting_unit_i : int) -> void:
 
 func _on_is_talking_changed(is_talking : bool) -> void:
 	if !is_talking:
-		_animate_talking(dialogue_units[current_unit_i].resting_animation)
+		_animate_talking(dialogue_units[current_unit_i].resting_animation, dialogue_units[current_unit_i].speed_mult)
 	else:
-		_animate_talking(dialogue_units[current_unit_i].talking_animation)
+		_animate_talking(dialogue_units[current_unit_i].talking_animation, dialogue_units[current_unit_i].speed_mult)
 
-func _animate_talking(animation_name : String) -> void:
-	$Characters/Portrait/AnimatedMouth.play(animation_name)
+func _animate_talking(animation_name : String, speed : float) -> void:
+	$Characters/Portrait/AnimatedMouth.play(animation_name, speed)
 
 func _change_displayed_character(character_name : String) -> void:
 	$DialogueContainer/NameTag/MarginContainer/CharacterName.text = character_name
