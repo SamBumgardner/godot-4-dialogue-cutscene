@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://slar1ieetoeo"]
 
-[ext_resource type="Texture2D" uid="uid://dnkl2ckxikvtq" path="res://Dialogue/art/NinePatchRect.png" id="1_6jxcp"]
-[ext_resource type="Script" path="res://Dialogue/DialogueDisplay.gd" id="2_qfsxe"]
-[ext_resource type="Script" path="res://Dialogue/Dialogue.gd" id="3_freqs"]
-[ext_resource type="Texture2D" uid="uid://stwbcecneeas" path="res://Dialogue/art/dialogue_advance_arrow.png" id="5_7iphb"]
-[ext_resource type="Script" path="res://Dialogue/DialogueAdvanceArrow.gd" id="6_260ud"]
+[ext_resource type="Texture2D" uid="uid://dnkl2ckxikvtq" path="res://Dialogue/art/NinePatchRect.png" id="1_88g43"]
+[ext_resource type="Script" path="res://Dialogue/src/cutscene/dialogue/DialogueDisplay.gd" id="2_0xm3k"]
+[ext_resource type="Script" path="res://Dialogue/src/cutscene/dialogue/Dialogue.gd" id="3_jfexq"]
+[ext_resource type="Texture2D" uid="uid://stwbcecneeas" path="res://Dialogue/art/dialogue_advance_arrow.png" id="4_3el73"]
+[ext_resource type="Script" path="res://Dialogue/src/cutscene/dialogue/DialogueAdvanceArrow.gd" id="5_88ty2"]
 
 [node name="DialogueDisplay" type="NinePatchRect"]
 custom_minimum_size = Vector2(0, 240)
@@ -15,7 +15,7 @@ anchor_bottom = 1.0
 offset_top = -128.0
 grow_horizontal = 2
 grow_vertical = 0
-texture = ExtResource("1_6jxcp")
+texture = ExtResource("1_88g43")
 region_rect = Rect2(0, 0, 137, 103)
 patch_margin_left = 98
 patch_margin_top = 64
@@ -23,7 +23,7 @@ patch_margin_right = 98
 patch_margin_bottom = 64
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
-script = ExtResource("2_qfsxe")
+script = ExtResource("2_0xm3k")
 
 [node name="TextAnchor" type="Control" parent="."]
 anchors_preset = 0
@@ -46,7 +46,7 @@ text = "Sample Text"
 autowrap_mode = 2
 clip_text = true
 max_lines_visible = 4
-script = ExtResource("3_freqs")
+script = ExtResource("3_jfexq")
 
 [node name="DialogueAdvanceArrow" type="TextureRect" parent="."]
 visible = false
@@ -63,5 +63,5 @@ offset_bottom = -21.0
 grow_horizontal = 0
 grow_vertical = 0
 scale = Vector2(0.75, 0.75)
-texture = ExtResource("5_7iphb")
-script = ExtResource("6_260ud")
+texture = ExtResource("4_3el73")
+script = ExtResource("5_88ty2")

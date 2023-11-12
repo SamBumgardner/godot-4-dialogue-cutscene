@@ -1,11 +1,11 @@
 [gd_scene load_steps=4 format=3 uid="uid://bvp18j4xsgw5a"]
 
-[ext_resource type="Script" path="res://Dialogue/SampleGameplay.gd" id="1_8xg0m"]
-[ext_resource type="PackedScene" uid="uid://cwyu2ghreykrb" path="res://Dialogue/DialogueCutscene.tscn" id="1_q0aig"]
-[ext_resource type="Texture2D" uid="uid://ina2c6u0l23m" path="res://icon.svg" id="2_gspe1"]
+[ext_resource type="Script" path="res://Dialogue/src/SampleGameplay.gd" id="1_plnkm"]
+[ext_resource type="Texture2D" uid="uid://ina2c6u0l23m" path="res://icon.svg" id="2_vwpbf"]
+[ext_resource type="PackedScene" uid="uid://cwyu2ghreykrb" path="res://Dialogue/Cutscene/DialogueCutscene.tscn" id="3_tu4fb"]
 
 [node name="SampleGameplay" type="Node2D"]
-script = ExtResource("1_8xg0m")
+script = ExtResource("1_plnkm")
 metadata/_edit_horizontal_guides_ = []
 
 [node name="GameplayLayer" type="CanvasLayer" parent="."]
@@ -30,10 +30,10 @@ vertical_alignment = 1
 
 [node name="MockGameplay" type="Sprite2D" parent="GameplayLayer"]
 position = Vector2(155, 232)
-texture = ExtResource("2_gspe1")
+texture = ExtResource("2_vwpbf")
 
 [node name="CutsceneLayer" type="CanvasLayer" parent="."]
 visible = false
 
-[node name="DialogueCutscene" parent="CutsceneLayer" instance=ExtResource("1_q0aig")]
+[node name="DialogueCutscene" parent="CutsceneLayer" instance=ExtResource("3_tu4fb")]
 process_mode = 2

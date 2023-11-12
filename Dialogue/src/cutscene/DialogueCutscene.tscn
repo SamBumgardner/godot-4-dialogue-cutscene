@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://cwyu2ghreykrb"]
 
-[ext_resource type="Script" path="res://Dialogue/DialogueCutscene.gd" id="1_edn8v"]
-[ext_resource type="SpriteFrames" uid="uid://7j74ybk6dx1k" path="res://Dialogue/art/CharacterExpressions_1.tres" id="2_rwyyi"]
-[ext_resource type="SpriteFrames" uid="uid://d177wiq0kekuc" path="res://Dialogue/art/CharacterMouth_1.tres" id="3_0poj1"]
-[ext_resource type="PackedScene" uid="uid://slar1ieetoeo" path="res://Dialogue/DialogueDisplay.tscn" id="4_6k3nq"]
-[ext_resource type="Texture2D" uid="uid://ybeexlyr6f4w" path="res://Dialogue/art/NameTagRect.png" id="4_uyn7j"]
-[ext_resource type="AudioStream" uid="uid://wv708m68fre2" path="res://Dialogue/sound/default_voice_randomizer.tres" id="6_kh7t1"]
+[ext_resource type="Script" path="res://Dialogue/src/cutscene/DialogueCutscene.gd" id="1_4n4w5"]
+[ext_resource type="SpriteFrames" uid="uid://7j74ybk6dx1k" path="res://Dialogue/art/character/resources/Gerald_Expressions.tres" id="2_vua40"]
+[ext_resource type="SpriteFrames" uid="uid://d177wiq0kekuc" path="res://Dialogue/art/character/resources/Cameron_Mouth.tres" id="3_l4qde"]
+[ext_resource type="Texture2D" uid="uid://ybeexlyr6f4w" path="res://Dialogue/art/NameTagRect.png" id="4_rdqm6"]
+[ext_resource type="PackedScene" uid="uid://slar1ieetoeo" path="res://Dialogue/src/cutscene/DialogueBox/DialogueDisplay.tscn" id="5_twl4m"]
+[ext_resource type="AudioStream" uid="uid://wv708m68fre2" path="res://Dialogue/sound/default_voice_randomizer.tres" id="6_xrw1f"]
 
 [node name="DialogueCutscene" type="Control"]
 layout_mode = 3
@@ -14,7 +14,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_edn8v")
+script = ExtResource("1_4n4w5")
 
 [node name="Characters" type="Control" parent="."]
 layout_mode = 1
@@ -26,13 +26,13 @@ offset_bottom = 408.0
 z_index = -1
 position = Vector2(0, 9)
 scale = Vector2(0.5, 0.5)
-sprite_frames = ExtResource("2_rwyyi")
+sprite_frames = ExtResource("2_vua40")
 centered = false
 offset = Vector2(0, -512)
 
 [node name="AnimatedMouth" type="AnimatedSprite2D" parent="Characters/Portrait"]
 z_index = 1
-sprite_frames = ExtResource("3_0poj1")
+sprite_frames = ExtResource("3_l4qde")
 centered = false
 offset = Vector2(0, -512)
 
@@ -54,7 +54,7 @@ theme_override_constants/margin_left = 12
 
 [node name="NinePatchRect" type="NinePatchRect" parent="DialogueContainer/NameTag"]
 layout_mode = 2
-texture = ExtResource("4_uyn7j")
+texture = ExtResource("4_rdqm6")
 patch_margin_left = 10
 patch_margin_top = 16
 patch_margin_right = 10
@@ -74,9 +74,9 @@ theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 24
 text = "Gerald"
 
-[node name="DialogueDisplay" parent="DialogueContainer" instance=ExtResource("4_6k3nq")]
+[node name="DialogueDisplay" parent="DialogueContainer" instance=ExtResource("5_twl4m")]
 layout_mode = 2
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_kh7t1")
+stream = ExtResource("6_xrw1f")
 volume_db = -14.023

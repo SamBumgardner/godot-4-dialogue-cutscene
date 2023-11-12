@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://s3x301id4if6"
-path="res://.godot/imported/CharacterMouth_1.png-7f51b36d9656b4e052f6402d36aa293c.ctex"
+path="res://.godot/imported/Gerald_Mouth.png-4a0f73303b67cc15d460115434d80c4e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Dialogue/art/CharacterMouth_1.png"
-dest_files=["res://.godot/imported/CharacterMouth_1.png-7f51b36d9656b4e052f6402d36aa293c.ctex"]
+source_file="res://Dialogue/art/character/sheets/Gerald_Mouth.png"
+dest_files=["res://.godot/imported/Gerald_Mouth.png-4a0f73303b67cc15d460115434d80c4e.ctex"]
 
 [params]
 

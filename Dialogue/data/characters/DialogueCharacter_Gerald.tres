@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="DialogueCharacter" load_steps=5 format=3 uid="uid://cod50x8i372ve"]
 
-[ext_resource type="Script" path="res://Dialogue/DialogueCharacter.gd" id="2_0hp63"]
-[ext_resource type="SpriteFrames" uid="uid://7j74ybk6dx1k" path="res://Dialogue/art/CharacterExpressions_1.tres" id="2_vyj11"]
-[ext_resource type="SpriteFrames" uid="uid://d177wiq0kekuc" path="res://Dialogue/art/CharacterMouth_1.tres" id="3_heqde"]
+[ext_resource type="Script" path="res://Dialogue/src/cutscene/models/DialogueCharacter.gd" id="2_0hp63"]
+[ext_resource type="SpriteFrames" uid="uid://7j74ybk6dx1k" path="res://Dialogue/art/character/resources/Gerald_Expressions.tres" id="2_vyj11"]
+[ext_resource type="SpriteFrames" uid="uid://d177wiq0kekuc" path="res://Dialogue/art/character/resources/Cameron_Mouth.tres" id="3_heqde"]
 [ext_resource type="AudioStream" uid="uid://c8vb06cukmari" path="res://Dialogue/sound/voice_blip_low.wav" id="3_pseda"]
 
 [resource]

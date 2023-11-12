@@ -81,8 +81,6 @@ func _input(event):
 		_attempt_scene_advance()
 
 func _attempt_scene_advance() -> void:
-	# If current step of scene is not complete, go to completion
-	# If should start playing next step of scene, initiate next steps
 	var can_start_next_page : bool = dialogue_display.attempt_dialogue_advance()
 	if can_start_next_page:
 		current_script_page += 1
