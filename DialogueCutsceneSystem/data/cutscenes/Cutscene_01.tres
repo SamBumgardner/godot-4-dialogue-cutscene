@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="DialogueCutsceneData" load_steps=4 format=3 uid="uid://bpdxyul1gg2s0"]
+
+[ext_resource type="Script" path="res://DialogueCutsceneSystem/src/cutscene/models/DialogueCutsceneData.gd" id="1_rdgnx"]
+[ext_resource type="Resource" uid="uid://cod50x8i372ve" path="res://DialogueCutsceneSystem/data/characters/DialogueCharacter_Gerald.tres" id="1_who7j"]
+[ext_resource type="Resource" uid="uid://cixeuftx5vt2p" path="res://DialogueCutsceneSystem/data/characters/DialogueCharacter_Cameron.tres" id="2_g5d5w"]
+
+[resource]
+script = ExtResource("1_rdgnx")
+characters = Array[Resource("res://DialogueCutsceneSystem/src/cutscene/models/DialogueCharacter.gd")]([ExtResource("1_who7j"), ExtResource("2_g5d5w")])
+dialogue_script = PackedStringArray("Gerald|2,0,0|This is a sample dialogue. I wonder how we should handle positioning for text that doesn\'t fill the entire dialogue box.\n\n|1|With this sizing|.15,0,1,sad,default|...|1| we can fit a total of 4 lines. Who knows how well this would work.", "Cameron|1|Maybe you have more interesting things to say?", "Gerald|3|I don\'t think so.")
