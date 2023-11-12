@@ -31,11 +31,11 @@ func display_dialogue(dialogue_units : Array[DialogueUnit]) -> void:
 	
 	text_appear_tween = create_tween()
 	for i in dialogue_units.size():
+		text_appear_tween.tween_callback(_starting_new_dialogue_unit)
 		var unit : DialogueUnit = dialogue_units[i]
 		text_to_show += unit.text
 		if unit.delay_before > 0:
 			text_appear_tween.tween_interval(unit.delay_before)
-		text_appear_tween.tween_callback(_starting_new_dialogue_unit)
 		text_appear_tween.tween_property(
 			dialogue_label, "visible_characters", text_to_show.length(), 
 			unit.text.length() * SEC_PER_CHAR / unit.speed_mult)

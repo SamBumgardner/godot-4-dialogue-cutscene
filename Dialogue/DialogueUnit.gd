@@ -8,7 +8,9 @@ var text : String
 var delay_before : float = 0
 var speed_mult : float = DEFAULT_SPEED_MULTIPLIER
 var delay_after : float = 0
-var animation_name : String = "talking"
+var expression_name = "default"
+var talking_animation : String = "talking"
+var resting_animation : String = "default"
 
 func _init(
 		i_text : String, 
@@ -21,4 +23,6 @@ func _init(
 			0: speed_mult = float(raw_data)
 			1: delay_before = float(raw_data)
 			2: delay_after = float(raw_data)
-			3: animation_name = raw_data
+			3: expression_name = raw_data
+			4: talking_animation = raw_data
+			5: resting_animation = raw_data

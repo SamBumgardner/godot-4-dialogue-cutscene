@@ -7,4 +7,4 @@
 [resource]
 script = ExtResource("1_rdgnx")
 characters = Array[Resource("res://Dialogue/DialogueCharacter.gd")]([ExtResource("1_who7j"), ExtResource("2_g5d5w")])
-dialogue_script = PackedStringArray("Gerald|2|This is a sample dialogue. I wonder how we should handle positioning for text that doesn\'t fill the entire dialogue box.\n\n|1|With this sizing|.15,0,1,neutral|...|1| we can fit a total of 4 lines. Who knows how well this would work.", "Cameron|1|Maybe you have more interesting things to say?", "Gerald|3|I don\'t think so.")
+dialogue_script = PackedStringArray("Gerald|2,0,0|This is a sample dialogue. I wonder how we should handle positioning for text that doesn\'t fill the entire dialogue box.\n\n|1|With this sizing|.15,0,1,sad,default|...|1| we can fit a total of 4 lines. Who knows how well this would work.", "Cameron|1|Maybe you have more interesting things to say?", "Gerald|3|I don\'t think so.")

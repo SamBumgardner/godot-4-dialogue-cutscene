@@ -63,7 +63,8 @@ func _parse_script_page(text : String) -> Array[DialogueUnit]:
 		while starting_point < meta_and_text[i + 1].length() - 1:
 			var end_index = sentences[sentence_i].get_end() if sentences.size() != sentence_i else meta_and_text[i + 1].length()
 			var unit = DialogueUnit.new(meta_and_text[i + 1].substr(starting_point, end_index - starting_point), meta_and_text[i])
-			unit.delay_before = 0
+			if starting_point > 0:
+				unit.delay_before = 0
 			var last_char =  meta_and_text[i + 1].substr(end_index - 1, 1)
 			if ",.!?".contains(last_char):
 				if end_index >= meta_and_text[i + 1].length() - 1:
@@ -98,21 +99,22 @@ func _on_text_revealed():
 
 func _on_starting_dialogue_unit(starting_unit_i : int) -> void:
 	current_unit_i = starting_unit_i
-	if $Characters/AnimatedPortrait.is_playing():
-		_animate_talking(dialogue_units[current_unit_i].animation_name)
+	$Characters/Portrait.play(dialogue_units[current_unit_i].expression_name)
+	_on_is_talking_changed($DialogueContainer/DialogueDisplay/TextAnchor/Dialogue.is_talking)
 
 func _on_is_talking_changed(is_talking : bool) -> void:
 	if !is_talking:
-		_animate_talking("neutral")
+		_animate_talking(dialogue_units[current_unit_i].resting_animation)
 	else:
-		_animate_talking(dialogue_units[current_unit_i].animation_name)
+		_animate_talking(dialogue_units[current_unit_i].talking_animation)
 
 func _animate_talking(animation_name : String) -> void:
-	$Characters/AnimatedPortrait.play(animation_name)
+	$Characters/Portrait/AnimatedMouth.play(animation_name)
 
 func _change_displayed_character(character_name : String) -> void:
 	$DialogueContainer/NameTag/MarginContainer/CharacterName.text = character_name
-	$Characters/AnimatedPortrait.sprite_frames = characters[character_name].animations
+	$Characters/Portrait.sprite_frames = characters[character_name].expressions
+	$Characters/Portrait/AnimatedMouth.sprite_frames = characters[character_name].mouth_frames
 	if audio_stream_randomizer.streams_count > 0:
 		audio_stream_randomizer.remove_stream(0)
 	audio_stream_randomizer.add_stream(0, characters[character_name].voice, 1)

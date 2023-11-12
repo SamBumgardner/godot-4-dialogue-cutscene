@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cwyu2ghreykrb"]
+[gd_scene load_steps=7 format=3 uid="uid://cwyu2ghreykrb"]
 
 [ext_resource type="Script" path="res://Dialogue/DialogueCutscene.gd" id="1_edn8v"]
+[ext_resource type="SpriteFrames" uid="uid://7j74ybk6dx1k" path="res://Dialogue/art/CharacterExpressions_1.tres" id="2_rwyyi"]
+[ext_resource type="SpriteFrames" uid="uid://d177wiq0kekuc" path="res://Dialogue/art/CharacterMouth_1.tres" id="3_0poj1"]
 [ext_resource type="PackedScene" uid="uid://slar1ieetoeo" path="res://Dialogue/DialogueDisplay.tscn" id="4_6k3nq"]
-[ext_resource type="SpriteFrames" uid="uid://be8l72qxbjduy" path="res://Dialogue/art/character_frames.tres" id="4_8cmcx"]
 [ext_resource type="Texture2D" uid="uid://ybeexlyr6f4w" path="res://Dialogue/art/NameTagRect.png" id="4_uyn7j"]
 [ext_resource type="AudioStream" uid="uid://wv708m68fre2" path="res://Dialogue/sound/default_voice_randomizer.tres" id="6_kh7t1"]
 
@@ -21,12 +22,17 @@ anchors_preset = 0
 offset_top = 408.0
 offset_bottom = 408.0
 
-[node name="AnimatedPortrait" type="AnimatedSprite2D" parent="Characters"]
+[node name="Portrait" type="AnimatedSprite2D" parent="Characters"]
 z_index = -1
 position = Vector2(0, 9)
 scale = Vector2(0.5, 0.5)
-sprite_frames = ExtResource("4_8cmcx")
-animation = &"talking"
+sprite_frames = ExtResource("2_rwyyi")
+centered = false
+offset = Vector2(0, -512)
+
+[node name="AnimatedMouth" type="AnimatedSprite2D" parent="Characters/Portrait"]
+z_index = 1
+sprite_frames = ExtResource("3_0poj1")
 centered = false
 offset = Vector2(0, -512)
 
