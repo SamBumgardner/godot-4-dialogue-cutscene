@@ -48,4 +48,4 @@ func display_dialogue(dialogue_units : Array[DialogueUnit]) -> void:
 
 func _starting_new_dialogue_unit():
 		current_dialogue_unit += 1
-		starting_dialogue_unit.emit(current_dialogue_unit)
+		starting_dialogue_unit.emit(current_dialogue_unit, dialogue_label.is_talking)

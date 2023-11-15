@@ -26,7 +26,7 @@ func start_cutscene(cutscene : DialogueCutsceneData) -> void:
 	
 	$CutsceneLayer.show()
 	$CutsceneLayer/DialogueCutscene.init_cutscene(cutscene)
-	$CutsceneLayer/DialogueCutscene.fade_in()
+	$CutsceneLayer/DialogueCutscene.open_cutscene()
 
 func _on_cutscene_finished() -> void:
 	current_cutscene_i = (current_cutscene_i + 1) % cutscenes.size()

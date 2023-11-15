@@ -4,7 +4,7 @@
 [ext_resource type="SpriteFrames" uid="uid://7j74ybk6dx1k" path="res://DialogueCutsceneSystem/art/character/resources/Gerald_Expressions.tres" id="2_vua40"]
 [ext_resource type="SpriteFrames" uid="uid://d177wiq0kekuc" path="res://DialogueCutsceneSystem/art/character/resources/Cameron_Mouth.tres" id="3_l4qde"]
 [ext_resource type="Texture2D" uid="uid://ybeexlyr6f4w" path="res://DialogueCutsceneSystem/art/NameTagRect.png" id="4_rdqm6"]
-[ext_resource type="PackedScene" uid="uid://slar1ieetoeo" path="res://DialogueCutsceneSystem/src/cutscene/DialogueBox/DialogueDisplay.tscn" id="5_twl4m"]
+[ext_resource type="PackedScene" uid="uid://slar1ieetoeo" path="res://DialogueCutsceneSystem/src/cutscene/dialogue/DialogueDisplay.tscn" id="5_twl4m"]
 [ext_resource type="AudioStream" uid="uid://wv708m68fre2" path="res://DialogueCutsceneSystem/sound/default_voice_randomizer.tres" id="6_xrw1f"]
 
 [node name="DialogueCutscene" type="Control"]
