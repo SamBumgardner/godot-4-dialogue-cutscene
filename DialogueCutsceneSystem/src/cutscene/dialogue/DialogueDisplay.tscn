@@ -1,0 +1,67 @@
+[gd_scene load_steps=6 format=3 uid="uid://slar1ieetoeo"]
+
+[ext_resource type="Texture2D" uid="uid://dnkl2ckxikvtq" path="res://DialogueCutsceneSystem/art/NinePatchRect.png" id="1_88g43"]
+[ext_resource type="Script" path="res://DialogueCutsceneSystem/src/cutscene/dialogue/DialogueDisplay.gd" id="2_0xm3k"]
+[ext_resource type="Script" path="res://DialogueCutsceneSystem/src/cutscene/dialogue/Dialogue.gd" id="3_jfexq"]
+[ext_resource type="Texture2D" uid="uid://stwbcecneeas" path="res://DialogueCutsceneSystem/art/dialogue_advance_arrow.png" id="4_3el73"]
+[ext_resource type="Script" path="res://DialogueCutsceneSystem/src/cutscene/dialogue/DialogueAdvanceArrow.gd" id="5_88ty2"]
+
+[node name="DialogueDisplay" type="NinePatchRect"]
+custom_minimum_size = Vector2(0, 240)
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -128.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("1_88g43")
+region_rect = Rect2(0, 0, 137, 103)
+patch_margin_left = 98
+patch_margin_top = 64
+patch_margin_right = 98
+patch_margin_bottom = 64
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+script = ExtResource("2_0xm3k")
+
+[node name="TextAnchor" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 50.0
+offset_top = 51.0
+offset_right = 1102.0
+offset_bottom = 188.0
+
+[node name="Dialogue" type="Label" parent="TextAnchor"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_font_sizes/font_size = 23
+text = "Sample Text"
+autowrap_mode = 2
+clip_text = true
+max_lines_visible = 4
+script = ExtResource("3_jfexq")
+
+[node name="DialogueAdvanceArrow" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -88.0
+offset_top = -85.0
+offset_right = -24.0
+offset_bottom = -21.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("4_3el73")
+script = ExtResource("5_88ty2")

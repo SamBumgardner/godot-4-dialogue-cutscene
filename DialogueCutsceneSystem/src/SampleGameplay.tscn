@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvp18j4xsgw5a"]
+
+[ext_resource type="Script" path="res://DialogueCutsceneSystem/src/SampleGameplay.gd" id="1_plnkm"]
+[ext_resource type="Texture2D" uid="uid://ina2c6u0l23m" path="res://icon.svg" id="2_vwpbf"]
+[ext_resource type="PackedScene" uid="uid://cwyu2ghreykrb" path="res://DialogueCutsceneSystem/src/cutscene/DialogueCutscene.tscn" id="3_tu4fb"]
+
+[node name="SampleGameplay" type="Node2D"]
+script = ExtResource("1_plnkm")
+metadata/_edit_horizontal_guides_ = []
+
+[node name="GameplayLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="GameplayLayer"]
+custom_minimum_size = Vector2(1152, 0)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 650.0
+
+[node name="Label" type="Label" parent="GameplayLayer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Here's the game: Press the Spacebar!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MockGameplay" type="Sprite2D" parent="GameplayLayer"]
+position = Vector2(155, 232)
+texture = ExtResource("2_vwpbf")
+
+[node name="CutsceneLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="DialogueCutscene" parent="CutsceneLayer" instance=ExtResource("3_tu4fb")]
+process_mode = 2

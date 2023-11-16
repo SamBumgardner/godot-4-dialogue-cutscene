@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="DialogueCharacter" load_steps=5 format=3 uid="uid://cixeuftx5vt2p"]
+
+[ext_resource type="Script" path="res://DialogueCutsceneSystem/src/cutscene/models/DialogueCharacter.gd" id="1_2yd7s"]
+[ext_resource type="SpriteFrames" uid="uid://o0u7vjqw0ig2" path="res://DialogueCutsceneSystem/art/character/resources/Cameron_Expressions.tres" id="2_484ly"]
+[ext_resource type="AudioStream" uid="uid://chxc312xjvjma" path="res://DialogueCutsceneSystem/sound/voice_blip_high.wav" id="3_kxiur"]
+[ext_resource type="SpriteFrames" uid="uid://j0nvbkpccve4" path="res://DialogueCutsceneSystem/art/character/resources/Gerald_Mouth.tres" id="3_lpjep"]
+
+[resource]
+script = ExtResource("1_2yd7s")
+name = "Cameron"
+voice = ExtResource("3_kxiur")
+expressions = ExtResource("2_484ly")
+mouth_frames = ExtResource("3_lpjep")
