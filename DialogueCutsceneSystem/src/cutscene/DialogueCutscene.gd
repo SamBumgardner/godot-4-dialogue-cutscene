@@ -123,7 +123,12 @@ func close_cutscene():
 # =============== #
 # Private Methods #
 # =============== #
-# Can only advance the scene if the cutscene 
+func _animate_talking(animation_name : String, speed : float) -> void:
+	$Characters/Portrait/AnimatedMouth.play(animation_name, speed)
+
+# Can only advance the scene if the cutscene has content available and all relevant children are ready.
+# The idea is that attempting to advance the dialogue serves as a status check and (if necessary) an
+# instruction to advance the scene.
 func _attempt_scene_advance() -> void:
 	var can_start_next_page : bool = \
 		cutscene != null \
@@ -140,6 +145,7 @@ func _attempt_scene_advance() -> void:
 		elif visible:
 			close_cutscene()
 
+# Changes expression, mouth graphic, name tag, and "talking" audio noise.
 func _change_displayed_character(character_name : String) -> void:
 	$DialogueContainer/NameTag/MarginContainer/CharacterName.text = character_name
 	$Characters/Portrait.sprite_frames = _characters[character_name].expressions
@@ -178,19 +184,18 @@ func _parse_script_page(text : String) -> Array[DialogueUnit]:
 # ============== #
 # Event Handling #
 # ============== #
-func _on_is_talking_changed(is_talking : bool) -> void:
-	if !is_talking:
-		_animate_talking(_dialogue_units[_current_unit_i].resting_animation, _dialogue_units[_current_unit_i].speed_mult)
-	else:
-		_animate_talking(_dialogue_units[_current_unit_i].talking_animation, _dialogue_units[_current_unit_i].speed_mult)
-
-func _animate_talking(animation_name : String, speed : float) -> void:
-	$Characters/Portrait/AnimatedMouth.play(animation_name, speed)
+func _on_text_revealed():
+	$AudioStreamPlayer.play()
 
 func _on_starting_dialogue_unit(starting_unit_i : int, is_talking : bool) -> void:
 	_current_unit_i = starting_unit_i
 	$Characters/Portrait.play(_dialogue_units[_current_unit_i].expression_name)
 	_on_is_talking_changed(is_talking)
 
-func _on_text_revealed():
-	$AudioStreamPlayer.play()
+func _on_is_talking_changed(is_talking : bool) -> void:
+	if !is_talking:
+		_animate_talking(_dialogue_units[_current_unit_i].resting_animation, _dialogue_units[_current_unit_i].speed_mult)
+	else:
+		_animate_talking(_dialogue_units[_current_unit_i].talking_animation, _dialogue_units[_current_unit_i].speed_mult)
+
+

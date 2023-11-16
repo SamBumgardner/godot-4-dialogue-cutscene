@@ -1,6 +1,10 @@
-extends Label
-
 class_name Dialogue
+extends Label
+## Emits events as text is incrementally displayed via the [member visible_characters] property
+##   non_whitespace_char_revealed - emitted each frame that non-whitespace text is revealed.
+##     Should be used to trigger behavior that happens repeatedly during text reveal, like playing sounds effects to represent speech.
+##   is_talking_changed - [member _is_talking] tracks if any text was revealed during the last displayed frame. This is emitted when its value changes.
+##     Should be used to activate / deactivate behavior that only plays during text reveal (like talking animations)
 
 signal is_talking_changed
 signal non_whitespace_char_revealed

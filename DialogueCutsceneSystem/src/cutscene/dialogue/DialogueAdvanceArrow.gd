@@ -1,16 +1,16 @@
 extends TextureRect
 
 @onready var start_position : Vector2 = position
-var animating_tween : Tween
+var _animating_tween : Tween
 
 func _ready():
-	animating_tween = _create_bounce_tween()
+	_animating_tween = _create_bounce_tween()
 	visibility_changed.connect(_reset_tween)
 
 func _reset_tween() -> void:
 	position = start_position
-	animating_tween.stop()
-	animating_tween.play()
+	_animating_tween.stop()
+	_animating_tween.play()
 
 func _create_bounce_tween() -> Tween:
 	const BOUNCE_Y_CHANGE = Vector2(0, 15)
