@@ -197,5 +197,3 @@ func _on_is_talking_changed(is_talking : bool) -> void:
 		_animate_talking(_dialogue_units[_current_unit_i].resting_animation, _dialogue_units[_current_unit_i].speed_mult)
 	else:
 		_animate_talking(_dialogue_units[_current_unit_i].talking_animation, _dialogue_units[_current_unit_i].speed_mult)
-
-
