@@ -50,6 +50,8 @@ var _is_closing : bool = false
 # ================ #
 @onready var audio_stream_randomizer : AudioStreamRandomizer = $AudioStreamPlayer.stream
 @onready var dialogue_display : DialogueDisplay = $DialogueContainer/DialogueDisplay
+@onready var character_portrait : AnimatedSprite2D = $Characters/Portrait
+@onready var character_mouth : AnimatedSprite2D = $Characters/Portrait/AnimatedMouth
 
 # ======================== #
 # Built-in Virtual Methods # 
@@ -148,8 +150,11 @@ func _attempt_scene_advance() -> void:
 # Changes expression, mouth graphic, name tag, and "talking" audio noise.
 func _change_displayed_character(character_name : String) -> void:
 	$DialogueContainer/NameTag/MarginContainer/CharacterName.text = character_name
-	$Characters/Portrait.sprite_frames = _characters[character_name].expressions
-	$Characters/Portrait/AnimatedMouth.sprite_frames = _characters[character_name].mouth_frames
+	character_portrait.sprite_frames = _characters[character_name].expressions
+	character_portrait.offset.y = -1 * character_portrait.sprite_frames.get_frame_texture("default", 0).get_height()
+	character_mouth.sprite_frames = _characters[character_name].mouth_frames
+	character_mouth.offset.y = -1 * character_mouth.sprite_frames.get_frame_texture("default", 0).get_height()
+	
 	if audio_stream_randomizer.streams_count > 0:
 		audio_stream_randomizer.remove_stream(0)
 	audio_stream_randomizer.add_stream(0, _characters[character_name].voice, 1)
