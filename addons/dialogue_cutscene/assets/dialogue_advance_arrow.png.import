@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://stwbcecneeas"
-path="res://.godot/imported/dialogue_advance_arrow.png-c974147fa6a1d0d6f376b908311ac843.ctex"
+path="res://.godot/imported/dialogue_advance_arrow.png-d25f88c5cda9f86bf754acc0156df8f4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://DialogueCutsceneSystem/art/dialogue_advance_arrow.png"
-dest_files=["res://.godot/imported/dialogue_advance_arrow.png-c974147fa6a1d0d6f376b908311ac843.ctex"]
+source_file="res://addons/dialogue_cutscene/assets/dialogue_advance_arrow.png"
+dest_files=["res://.godot/imported/dialogue_advance_arrow.png-d25f88c5cda9f86bf754acc0156df8f4.ctex"]
 
 [params]
 

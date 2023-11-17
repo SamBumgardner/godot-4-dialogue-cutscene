@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dnkl2ckxikvtq"
-path="res://.godot/imported/NinePatchRect.png-ed1fe961d157258f5b666abb80d60d82.ctex"
+path="res://.godot/imported/NinePatchRect.png-6f2b6ef8feacef95c09d0adb05d287f2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://DialogueCutsceneSystem/art/NinePatchRect.png"
-dest_files=["res://.godot/imported/NinePatchRect.png-ed1fe961d157258f5b666abb80d60d82.ctex"]
+source_file="res://addons/dialogue_cutscene/assets/NinePatchRect.png"
+dest_files=["res://.godot/imported/NinePatchRect.png-6f2b6ef8feacef95c09d0adb05d287f2.ctex"]
 
 [params]
 

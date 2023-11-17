@@ -2,9 +2,9 @@
 
 [ext_resource type="Resource" uid="uid://cod50x8i372ve" path="res://DialogueCutsceneSystem/data/characters/DialogueCharacter_Gerald.tres" id="1_rmthc"]
 [ext_resource type="Resource" uid="uid://cixeuftx5vt2p" path="res://DialogueCutsceneSystem/data/characters/DialogueCharacter_Cameron.tres" id="2_r7grb"]
-[ext_resource type="Script" path="res://DialogueCutsceneSystem/src/cutscene/models/DialogueCutsceneData.gd" id="3_5rx53"]
+[ext_resource type="Script" path="res://addons/dialogue_cutscene/models/DialogueCutsceneData.gd" id="3_5rx53"]
 
 [resource]
 script = ExtResource("3_5rx53")
-characters = Array[Resource("res://DialogueCutsceneSystem/src/cutscene/models/DialogueCharacter.gd")]([ExtResource("1_rmthc"), ExtResource("2_r7grb")])
+characters = Array[Resource("res://addons/dialogue_cutscene/models/DialogueCharacter.gd")]([ExtResource("1_rmthc"), ExtResource("2_r7grb")])
 dialogue_script = PackedStringArray("Cameron|1.5,0,0,curious|You know, I\'ve been thinking|.2,0,1,curious,default|...", "Gerald|1|Go on.", "Cameron|1.5|It\'s pretty cool that we can talk back and forth like this, isn\'t it?", "Cameron|1.25|It\'s like we\'re in a movie or something.")
