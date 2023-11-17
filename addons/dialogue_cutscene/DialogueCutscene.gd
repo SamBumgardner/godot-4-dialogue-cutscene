@@ -103,13 +103,18 @@ func open_cutscene():
 	_is_closing = false
 	visible = true
 	modulate = Color.TRANSPARENT
+	$Characters.modulate = Color.TRANSPARENT
+	$DialogueContainer/NameTag.modulate = Color.TRANSPARENT
 	_change_displayed_character(cutscene.dialogue_script[0].get_slice("|", 0))
 	_dialogue_units = _parse_script_page(cutscene.dialogue_script[0])
 	_on_starting_dialogue_unit(0, false)
 	dialogue_display.reset()
 	
+
 	var fade_in_tween = create_tween() 
 	fade_in_tween.tween_property(self, "modulate", Color.WHITE, FADE_DURATION)
+	fade_in_tween.tween_property($Characters, "modulate", Color.WHITE, FADE_DURATION / 2)
+	fade_in_tween.tween_property($DialogueContainer/NameTag, "modulate", Color.WHITE, FADE_DURATION / 2)
 	fade_in_tween.tween_callback(_attempt_scene_advance)
 
 ## Hides this [DialogueCutscene] and child nodes, then emits the [signal cutscene_finished] signal to indicate the scene is complete.
@@ -117,7 +122,11 @@ func close_cutscene():
 	_is_closing = true
 	visible = true
 	modulate = Color.WHITE
+	$Characters.modulate = Color.WHITE
+	$DialogueContainer/NameTag.modulate = Color.WHITE
 	var fade_out_tween = create_tween()
+	fade_out_tween.tween_property($DialogueContainer/NameTag, "modulate", Color.TRANSPARENT, FADE_DURATION / 2)
+	fade_out_tween.tween_property($Characters, "modulate", Color.TRANSPARENT, FADE_DURATION / 2)
 	fade_out_tween.tween_property(self, "modulate", Color.TRANSPARENT, FADE_DURATION) 
 	fade_out_tween.tween_property(self, "visible", false, 0) 
 	fade_out_tween.tween_callback(emit_signal.bind("cutscene_finished"))
