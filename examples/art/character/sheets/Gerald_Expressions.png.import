@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://tivshv6285v7"
-path="res://.godot/imported/Gerald_Expressions.png-95b8bd82faf6f39e4e1bca0025146928.ctex"
+path="res://.godot/imported/Gerald_Expressions.png-6858c1d362e18314a6400c8a9036d3c5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://DialogueCutsceneSystem/art/character/sheets/Gerald_Expressions.png"
-dest_files=["res://.godot/imported/Gerald_Expressions.png-95b8bd82faf6f39e4e1bca0025146928.ctex"]
+source_file="res://examples/art/character/sheets/Gerald_Expressions.png"
+dest_files=["res://.godot/imported/Gerald_Expressions.png-6858c1d362e18314a6400c8a9036d3c5.ctex"]
 
 [params]
 

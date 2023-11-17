@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://jtdo8bnu1hsi"
-path="res://.godot/imported/Cameron_Mouth.png-d3afa7063b5ecd77be6414bb125528de.ctex"
+uid="uid://s3x301id4if6"
+path="res://.godot/imported/Gerald_Mouth.png-897b847e173a6b36a83d529f252764df.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://DialogueCutsceneSystem/art/character/sheets/Cameron_Mouth.png"
-dest_files=["res://.godot/imported/Cameron_Mouth.png-d3afa7063b5ecd77be6414bb125528de.ctex"]
+source_file="res://examples/art/character/sheets/Gerald_Mouth.png"
+dest_files=["res://.godot/imported/Gerald_Mouth.png-897b847e173a6b36a83d529f252764df.ctex"]
 
 [params]
 

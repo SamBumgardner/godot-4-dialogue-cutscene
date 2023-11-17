@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="DialogueCutsceneData" load_steps=4 format=3 uid="uid://bpdxyul1gg2s0"]
 
 [ext_resource type="Script" path="res://addons/dialogue_cutscene/models/DialogueCutsceneData.gd" id="1_rdgnx"]
-[ext_resource type="Resource" uid="uid://cod50x8i372ve" path="res://DialogueCutsceneSystem/data/characters/DialogueCharacter_Gerald.tres" id="1_who7j"]
-[ext_resource type="Resource" uid="uid://cixeuftx5vt2p" path="res://DialogueCutsceneSystem/data/characters/DialogueCharacter_Cameron.tres" id="2_g5d5w"]
+[ext_resource type="Resource" uid="uid://cod50x8i372ve" path="res://examples/data/characters/DialogueCharacter_Gerald.tres" id="1_who7j"]
+[ext_resource type="Resource" uid="uid://cixeuftx5vt2p" path="res://examples/data/characters/DialogueCharacter_Cameron.tres" id="2_g5d5w"]
 
 [resource]
 script = ExtResource("1_rdgnx")
