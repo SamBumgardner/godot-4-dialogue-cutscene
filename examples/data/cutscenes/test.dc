@@ -1,0 +1,8 @@
+characters:
+Gerald
+Cameron
+
+script:
+Gerald|1|This here is an example of cutscene imported from a ".dc" formatted file.
+Cameron|1,0,0,curious|What's a |.5,.5,.5,curious|".dc"|1,0,0,curious| formatted file?
+Gerald|1.5|That, my friend, is a mystery long-lost to time.

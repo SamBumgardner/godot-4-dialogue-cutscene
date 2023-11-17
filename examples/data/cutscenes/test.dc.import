@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_cutscene_data_importer"
+type="Resource"
+uid="uid://5v1tvb20cu2j"
+path="res://.godot/imported/test.dc-5c6c52a0c95663ebf84609d2cc88d5f1.tres"
+
+[deps]
+
+source_file="res://examples/data/cutscenes/test.dc"
+dest_files=["res://.godot/imported/test.dc-5c6c52a0c95663ebf84609d2cc88d5f1.tres"]
+
+[params]
+
+character_data_path="res://examples/data/characters"

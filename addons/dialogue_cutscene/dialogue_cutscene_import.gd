@@ -58,4 +58,25 @@ func _get_option_visibility(path, option_name, options) -> bool:
 	return true
 
 func _import(source_file, save_path, options, r_platform_variants, r_gen_files):
-	return ResourceSaver.save(DialogueCutsceneData.new(), "%s.%s" % [save_path, _get_save_extension()])
+	var file = FileAccess.open(source_file, FileAccess.READ)
+	if file == null:
+		return FileAccess.get_open_error()
+	
+	var parsed_cutscene = DialogueCutsceneData.new()
+	
+	var characters_label = file.get_line()
+	for i in range(2):
+		var character_name = file.get_line().strip_edges()
+		var character_resource = load("%s/DialogueCharacter_%s.tres" % [options.character_data_path, character_name])
+		parsed_cutscene.characters.append(character_resource)
+
+	while file.get_line().strip_edges() != "script:":
+		pass
+	
+	var script = []
+	for i in range(3):
+		script.append(file.get_line().strip_edges())
+	
+	parsed_cutscene.dialogue_script = PackedStringArray(script)
+
+	return ResourceSaver.save(parsed_cutscene, "%s.%s" % [save_path, _get_save_extension()])
