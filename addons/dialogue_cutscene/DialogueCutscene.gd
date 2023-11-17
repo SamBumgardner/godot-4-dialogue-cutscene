@@ -176,6 +176,8 @@ func _parse_script_page(text : String) -> Array[DialogueUnit]:
 	for i in range(1, meta_and_text.size(), 2):
 		var regex = RegEx.new()
 		regex.compile("[^.!?,]*[.!?,]+")
+		var whitespace_regex = RegEx.new()
+		whitespace_regex.compile("\\s")
 		var sentences = regex.search_all(meta_and_text[i + 1])
 		var starting_point = 0
 		var sentence_i = 0
@@ -188,6 +190,8 @@ func _parse_script_page(text : String) -> Array[DialogueUnit]:
 			if ",.!?".contains(last_char):
 				if end_index >= meta_and_text[i + 1].length() - 1:
 					unit.delay_after = max(END_OF_SENTENCE_PAUSE, unit.delay_after)
+				elif whitespace_regex.search(meta_and_text[i + 1].substr(end_index, 1)) == null:
+					unit.delay_after = 0 # don't pause if the punctuation isn't followed by whitespace.
 				else:
 					unit.delay_after = END_OF_SENTENCE_PAUSE
 			units.append(unit)
