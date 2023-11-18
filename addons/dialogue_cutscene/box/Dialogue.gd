@@ -33,3 +33,24 @@ func _process(_delta):
 		is_talking_changed.emit(is_talking)
 	
 	visible_characters_set = false
+
+
+func recalculate_margins(new_background : NinePatchRect):
+	const MARGIN_COEFFICIENT = 1.5
+	for side in range(4):
+		var anchor_value : float
+		var anchor_offset : int
+		match side:
+			SIDE_BOTTOM:
+				anchor_offset = MARGIN_COEFFICIENT * -1 * new_background.patch_margin_bottom
+				anchor_value = 1
+			SIDE_RIGHT:
+				anchor_offset = MARGIN_COEFFICIENT * -1 * new_background.patch_margin_right
+				anchor_value = 1
+			SIDE_LEFT:
+				anchor_offset = MARGIN_COEFFICIENT * new_background.patch_margin_left
+				anchor_value = 0
+			SIDE_TOP:
+				anchor_offset = MARGIN_COEFFICIENT * new_background.patch_margin_top
+				anchor_value = 0
+		set_anchor_and_offset(side, anchor_value, anchor_offset)

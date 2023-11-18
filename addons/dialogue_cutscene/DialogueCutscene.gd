@@ -178,16 +178,7 @@ func _change_displayed_character(character_name : String) -> void:
 
 func _set_dialogue_box_background(new_graphic : NinePatchRect):
 	if dialogue_display != null:
-		dialogue_display.texture = new_graphic.texture
-		
-		dialogue_display.axis_stretch_horizontal = new_graphic.axis_stretch_horizontal
-		dialogue_display.axis_stretch_vertical = new_graphic.axis_stretch_vertical
-		dialogue_display.draw_center = new_graphic.draw_center
-		dialogue_display.mouse_filter = new_graphic.mouse_filter
-		dialogue_display.patch_margin_bottom = new_graphic.patch_margin_bottom
-		dialogue_display.patch_margin_left = new_graphic.patch_margin_left
-		dialogue_display.patch_margin_right = new_graphic.patch_margin_right
-		dialogue_display.patch_margin_top = new_graphic.patch_margin_top
+		dialogue_display.change_nine_patch_rect(new_graphic)
 
 # ============== #
 # Event Handling #

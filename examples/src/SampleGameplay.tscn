@@ -36,10 +36,11 @@ texture = ExtResource("2_vwpbf")
 [node name="CutsceneLayer" type="CanvasLayer" parent="."]
 visible = false
 
-[node name="DialogueCutscene" parent="CutsceneLayer" instance=ExtResource("3_iugnm")]
+[node name="DialogueCutscene" parent="CutsceneLayer" node_paths=PackedStringArray("dialogue_box_background") instance=ExtResource("3_iugnm")]
 process_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+dialogue_box_background = NodePath("../AltDialogueBoxGraphic")
 
 [node name="AltDialogueBoxGraphic" type="NinePatchRect" parent="CutsceneLayer"]
 visible = false

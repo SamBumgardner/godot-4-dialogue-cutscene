@@ -19,13 +19,12 @@ const SEC_PER_CHAR : float = .05
 var _current_dialogue_unit : int
 var _text_appear_tween : Tween
 
-@onready var dialogue_container : MarginContainer = $MarginContainer
-@onready var dialogue_label : Dialogue = $MarginContainer/Dialogue
+@onready var dialogue_label : Dialogue = $Dialogue
 @onready var advance_arrow : TextureRect = $DialogueAdvanceArrow
 
-func _set(property, value):
-	if property.begins_with("patch_margin"):
-		dialogue_container.add_theme_constant_override(property.substr(6), value * 1.5)
+func _ready():
+	dialogue_label.recalculate_margins(self)
+	advance_arrow.recalculate_margins(self)
 
 ## Either accelerates dialogue (by skipping directly to the end) or returns [code]true[/code] 
 ## to indicate that the dialogue has successfully completed.
@@ -67,8 +66,28 @@ func reset() -> void:
 	dialogue_label.text = ""
 	advance_arrow.hide()
 
+## Change texture and patch margins to match the provided example
+func change_nine_patch_rect(example_nine_patch : NinePatchRect) -> void:
+	texture = example_nine_patch.texture
+		
+	axis_stretch_horizontal = example_nine_patch.axis_stretch_horizontal
+	axis_stretch_vertical = example_nine_patch.axis_stretch_vertical
+	draw_center = example_nine_patch.draw_center
+	mouse_filter = example_nine_patch.mouse_filter
+	patch_margin_bottom = example_nine_patch.patch_margin_bottom
+	patch_margin_left = example_nine_patch.patch_margin_left
+	patch_margin_right = example_nine_patch.patch_margin_right
+	patch_margin_top = example_nine_patch.patch_margin_top
+	
+	dialogue_label.recalculate_margins(self)
+	advance_arrow.recalculate_margins(self)
+
 ## Triggered when via tween callback whenever beginning the display of a new [DialogueUnit]
 ## Responsible for accurately emitting [signal starting_dialogue_unit] events.
 func _starting_new_dialogue_unit():
 		_current_dialogue_unit += 1
 		starting_dialogue_unit.emit(_current_dialogue_unit, dialogue_label.is_talking)
+
+func _on_item_rect_changed():
+	if is_node_ready():
+		advance_arrow.recalculate_margins(self)

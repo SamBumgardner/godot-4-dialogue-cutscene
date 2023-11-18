@@ -24,20 +24,15 @@ axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 script = ExtResource("2_0xm3k")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="Dialogue" type="Label" parent="."]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 48
-theme_override_constants/margin_top = 48
-theme_override_constants/margin_right = 35
-theme_override_constants/margin_bottom = 35
-
-[node name="Dialogue" type="Label" parent="MarginContainer"]
-layout_mode = 2
+offset_left = 48.0
+offset_top = 48.0
+offset_right = -48.0
+offset_bottom = -48.0
 size_flags_vertical = 1
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 5
@@ -51,7 +46,7 @@ script = ExtResource("3_jfexq")
 
 [node name="DialogueAdvanceArrow" type="TextureRect" parent="."]
 layout_mode = 1
-anchors_preset = 3
+anchors_preset = -1
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
@@ -62,6 +57,11 @@ offset_right = -16.0
 offset_bottom = -16.0
 grow_horizontal = 0
 grow_vertical = 0
-scale = Vector2(0.75, 0.75)
+size_flags_horizontal = 8
+size_flags_vertical = 8
 texture = ExtResource("4_3el73")
+stretch_mode = 2
 script = ExtResource("5_88ty2")
+
+[connection signal="item_rect_changed" from="." to="." method="_on_item_rect_changed"]
+[connection signal="visibility_changed" from="DialogueAdvanceArrow" to="DialogueAdvanceArrow" method="_on_visibility_changed"]
