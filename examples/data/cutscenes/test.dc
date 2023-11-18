@@ -3,7 +3,6 @@ Gerald
 Cameron
 
 !script
-
     Gerald:
 |1|This here is an example of cutscene imported from a ".dc" formatted file.
 
@@ -15,3 +14,6 @@ How many lines can we have?????? What a big mystery.|
 
     Gerald:
 |1.5|That, my friend, is a mystery long-lost to time.|
+
+    Gerald:
+|1|It all began |.85|long,|.75| long,|.65| long,|.5| long,|.35| long,|.23| long,|.15| loooong ago|.10|...|
