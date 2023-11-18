@@ -26,6 +26,12 @@ const FADE_DURATION : float = .25
 @export var cutscene : DialogueCutsceneData:
 	set = init_cutscene
 
+## Set this to change the Dialogue Box's background and dynamically adjust margins to match.
+## A bug in Godot 4.1 prevents this from getting set properly in the editor as an export.
+## Set this manually inside parent node instead.
+@export var dialogue_box_background : NinePatchRect:
+	set = _set_dialogue_box_background
+
 # =============== #
 # Private Members #
 # =============== #
@@ -68,6 +74,8 @@ func _ready():
 	dialogue_display.dialogue_label.is_talking_changed.connect(_on_is_talking_changed, CONNECT_DEFERRED)
 	dialogue_display.starting_dialogue_unit.connect(_on_starting_dialogue_unit)
 	
+	if dialogue_box_background != null:
+		_set_dialogue_box_background(dialogue_box_background)
 	init_cutscene(cutscene)
 
 ## Consumes "ui_accept pressed" input events.
@@ -167,6 +175,19 @@ func _change_displayed_character(character_name : String) -> void:
 	if audio_stream_randomizer.streams_count > 0:
 		audio_stream_randomizer.remove_stream(0)
 	audio_stream_randomizer.add_stream(0, _characters[character_name].voice, 1)
+
+func _set_dialogue_box_background(new_graphic : NinePatchRect):
+	if dialogue_display != null:
+		dialogue_display.texture = new_graphic.texture
+		
+		dialogue_display.axis_stretch_horizontal = new_graphic.axis_stretch_horizontal
+		dialogue_display.axis_stretch_vertical = new_graphic.axis_stretch_vertical
+		dialogue_display.draw_center = new_graphic.draw_center
+		dialogue_display.mouse_filter = new_graphic.mouse_filter
+		dialogue_display.patch_margin_bottom = new_graphic.patch_margin_bottom
+		dialogue_display.patch_margin_left = new_graphic.patch_margin_left
+		dialogue_display.patch_margin_right = new_graphic.patch_margin_right
+		dialogue_display.patch_margin_top = new_graphic.patch_margin_top
 
 # ============== #
 # Event Handling #

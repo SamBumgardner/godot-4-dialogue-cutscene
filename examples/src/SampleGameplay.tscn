@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bvp18j4xsgw5a"]
+[gd_scene load_steps=5 format=3 uid="uid://bvp18j4xsgw5a"]
 
 [ext_resource type="Script" path="res://examples/src/SampleGameplay.gd" id="1_plnkm"]
 [ext_resource type="Texture2D" uid="uid://ina2c6u0l23m" path="res://icon.svg" id="2_vwpbf"]
 [ext_resource type="PackedScene" uid="uid://cwyu2ghreykrb" path="res://addons/dialogue_cutscene/DialogueCutscene.tscn" id="3_iugnm"]
+[ext_resource type="Texture2D" uid="uid://ybeexlyr6f4w" path="res://addons/dialogue_cutscene/assets/NameTagRect.png" id="4_x1xpn"]
 
 [node name="SampleGameplay" type="Node2D"]
 script = ExtResource("1_plnkm")
@@ -37,3 +38,16 @@ visible = false
 
 [node name="DialogueCutscene" parent="CutsceneLayer" instance=ExtResource("3_iugnm")]
 process_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="AltDialogueBoxGraphic" type="NinePatchRect" parent="CutsceneLayer"]
+visible = false
+self_modulate = Color(1, 1, 1, 0)
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("4_x1xpn")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10

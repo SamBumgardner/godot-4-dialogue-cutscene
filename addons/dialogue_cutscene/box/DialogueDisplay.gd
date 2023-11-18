@@ -19,8 +19,13 @@ const SEC_PER_CHAR : float = .05
 var _current_dialogue_unit : int
 var _text_appear_tween : Tween
 
-@onready var dialogue_label : Dialogue = $TextAnchor/Dialogue
+@onready var dialogue_container : MarginContainer = $MarginContainer
+@onready var dialogue_label : Dialogue = $MarginContainer/Dialogue
 @onready var advance_arrow : TextureRect = $DialogueAdvanceArrow
+
+func _set(property, value):
+	if property.begins_with("patch_margin"):
+		dialogue_container.add_theme_constant_override(property.substr(6), value * 1.5)
 
 ## Either accelerates dialogue (by skipping directly to the end) or returns [code]true[/code] 
 ## to indicate that the dialogue has successfully completed.

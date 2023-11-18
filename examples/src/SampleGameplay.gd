@@ -11,6 +11,8 @@ var current_cutscene_i = 0
 func _ready():
 	_init_gameplay()
 	$CutsceneLayer/DialogueCutscene.cutscene_finished.connect(_on_cutscene_finished)
+	
+	$CutsceneLayer/DialogueCutscene.dialogue_box_background = $CutsceneLayer/AltDialogueBoxGraphic
 
 func _init_gameplay() -> void:
 	var gameplay_tween = create_tween()
