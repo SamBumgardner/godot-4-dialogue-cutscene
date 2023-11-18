@@ -105,8 +105,8 @@ func open_cutscene():
 	modulate = Color.TRANSPARENT
 	$Characters.modulate = Color.TRANSPARENT
 	$DialogueContainer/NameTag.modulate = Color.TRANSPARENT
-	_change_displayed_character(cutscene.dialogue_script[0].get_slice("|", 0))
-	_dialogue_units = _parse_script_page(cutscene.dialogue_script[0])
+	_change_displayed_character(cutscene.dialogue_script[0].speaker_name)
+	_dialogue_units = cutscene.dialogue_script[0].dialogue_units
 	_on_starting_dialogue_unit(0, false)
 	dialogue_display.reset()
 	
@@ -150,8 +150,8 @@ func _attempt_scene_advance() -> void:
 		_current_script_page += 1
 		if _current_script_page < cutscene.dialogue_script.size():
 			_current_unit_i = -1
-			_change_displayed_character(cutscene.dialogue_script[_current_script_page].get_slice("|", 0))
-			_dialogue_units = _parse_script_page(cutscene.dialogue_script[_current_script_page])
+			_change_displayed_character(cutscene.dialogue_script[_current_script_page].speaker_name)
+			_dialogue_units = cutscene.dialogue_script[_current_script_page].dialogue_units
 			dialogue_display.display_dialogue(_dialogue_units)
 		elif visible:
 			close_cutscene()
@@ -167,37 +167,6 @@ func _change_displayed_character(character_name : String) -> void:
 	if audio_stream_randomizer.streams_count > 0:
 		audio_stream_randomizer.remove_stream(0)
 	audio_stream_randomizer.add_stream(0, _characters[character_name].voice, 1)
-
-# Private method responsible for translating [member DialogueCutsceneData.dialogue_script] pages into arrays of [DialogueUnit]
-# Implements spec defined and documented in [DialogueUnit] to parse dialogue text and metadata.
-func _parse_script_page(text : String) -> Array[DialogueUnit]:
-	var units : Array[DialogueUnit] = []
-	var meta_and_text : PackedStringArray = text.split("|", false)
-	for i in range(1, meta_and_text.size(), 2):
-		var regex = RegEx.new()
-		regex.compile("[^.!?,]*[.!?,]+")
-		var whitespace_regex = RegEx.new()
-		whitespace_regex.compile("\\s")
-		var sentences = regex.search_all(meta_and_text[i + 1])
-		var starting_point = 0
-		var sentence_i = 0
-		while starting_point < meta_and_text[i + 1].length() - 1:
-			var end_index = sentences[sentence_i].get_end() if sentences.size() != sentence_i else meta_and_text[i + 1].length()
-			var unit = DialogueUnit.new(meta_and_text[i + 1].substr(starting_point, end_index - starting_point), meta_and_text[i])
-			if starting_point > 0:
-				unit.delay_before = 0
-			var last_char =  meta_and_text[i + 1].substr(end_index - 1, 1)
-			if ",.!?".contains(last_char):
-				if end_index >= meta_and_text[i + 1].length() - 1:
-					unit.delay_after = max(END_OF_SENTENCE_PAUSE, unit.delay_after)
-				elif whitespace_regex.search(meta_and_text[i + 1].substr(end_index, 1)) == null:
-					unit.delay_after = 0 # don't pause if the punctuation isn't followed by whitespace.
-				else:
-					unit.delay_after = END_OF_SENTENCE_PAUSE
-			units.append(unit)
-			starting_point = end_index
-			sentence_i += 1
-	return units
 
 # ============== #
 # Event Handling #

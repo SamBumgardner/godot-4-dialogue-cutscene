@@ -1,5 +1,5 @@
 class_name DialogueUnit
-extends RefCounted
+extends Resource
 ## Fundamental building block of a [DialogueCutsceneData] script.
 ## Contains text to display and metadata to explain how it should be presented.
 ##
@@ -7,13 +7,13 @@ extends RefCounted
 
 const DEFAULT_SPEED_MULTIPLIER = 1
 
-var text : String
-var speed_mult : float = DEFAULT_SPEED_MULTIPLIER
-var delay_before : float = 0
-var delay_after : float = 0
-var expression_name = "default"
-var talking_animation : String = "talking"
-var resting_animation : String = "default"
+@export var text : String
+@export var speed_mult : float = DEFAULT_SPEED_MULTIPLIER
+@export var delay_before : float = 0
+@export var delay_after : float = 0
+@export var expression_name = "default"
+@export var talking_animation : String = "talking"
+@export var resting_animation : String = "default"
 
 ## Constructor
 ## Responsible for parsing comma-separated metadata.
@@ -33,7 +33,7 @@ var resting_animation : String = "default"
 ##   expression_name = "happy"
 ##   talking_animation = "talking"
 ##   resting_animation = "laughing"
-func _init(
+func initialize(
 		i_text : String, 
 		metadata : String):
 	text = i_text

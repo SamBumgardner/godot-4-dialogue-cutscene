@@ -26,4 +26,4 @@ extends Resource
 ##     "Cameron|1.5,0,0,worried,talking,smile|Boooooooo!"
 ## ]
 ## [/code]
-@export var dialogue_script : PackedStringArray = PackedStringArray()
+@export var dialogue_script : Array[DialogueScriptPage] = []
