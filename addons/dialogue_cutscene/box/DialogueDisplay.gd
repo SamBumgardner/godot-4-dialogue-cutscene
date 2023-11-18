@@ -82,6 +82,9 @@ func change_nine_patch_rect(example_nine_patch : NinePatchRect) -> void:
 	dialogue_label.recalculate_margins(self)
 	advance_arrow.recalculate_margins(self)
 
+func change_arrow_texture(new_texture : Texture2D) -> void:
+	advance_arrow.texture = new_texture
+
 ## Triggered when via tween callback whenever beginning the display of a new [DialogueUnit]
 ## Responsible for accurately emitting [signal starting_dialogue_unit] events.
 func _starting_new_dialogue_unit():

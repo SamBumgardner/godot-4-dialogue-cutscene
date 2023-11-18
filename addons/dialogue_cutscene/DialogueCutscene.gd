@@ -18,19 +18,21 @@ const END_OF_SENTENCE_PAUSE : float = .15
 ## Duration of fade visual effect (in seconds) when displaying / hiding cutscene resources
 const FADE_DURATION : float = .25
 
-# ================ #
-# Exported Members #
-# ================ #
+# ============== #
+# Public Members #
+# ============== #
 ## Currently loaded cutscene. 
 ## Set value to load data, then call [method fade_in)] to reveal nodes & begin the cutscene
-@export var cutscene : DialogueCutsceneData:
+var cutscene : DialogueCutsceneData:
 	set = init_cutscene
 
 ## Set this to change the Dialogue Box's background and dynamically adjust margins to match.
-## A bug in Godot 4.1 prevents this from getting set properly in the editor as an export.
-## Set this manually inside parent node instead.
-@export var dialogue_box_background : NinePatchRect:
+var dialogue_box_background : NinePatchRect:
 	set = _set_dialogue_box_background
+
+## Set this to override the default text-advance arrow texture.
+var dialogue_arrow_texture : Texture2D:
+	set = _set_dialogue_arrow
 
 # =============== #
 # Private Members #
@@ -76,6 +78,9 @@ func _ready():
 	
 	if dialogue_box_background != null:
 		_set_dialogue_box_background(dialogue_box_background)
+	if dialogue_arrow_texture != null:
+		_set_dialogue_arrow(dialogue_arrow_texture)
+	
 	init_cutscene(cutscene)
 
 ## Consumes "ui_accept pressed" input events.
@@ -179,6 +184,10 @@ func _change_displayed_character(character_name : String) -> void:
 func _set_dialogue_box_background(new_graphic : NinePatchRect):
 	if dialogue_display != null:
 		dialogue_display.change_nine_patch_rect(new_graphic)
+
+func _set_dialogue_arrow(new_texture : Texture2D):
+	if dialogue_display != null:
+		dialogue_display.change_arrow_texture(new_texture)
 
 # ============== #
 # Event Handling #
