@@ -2,9 +2,9 @@ extends Node2D
 
 var cutscenes : Array[DialogueCutsceneData] = [
 	preload("res://examples/data/cutscenes/test.dc"),
-	preload("res://examples/data/cutscenes/Cutscene_01.tres"),
-	preload("res://examples/data/cutscenes/Cutscene_02.tres"),
-	preload("res://examples/data/cutscenes/Cutscene_03.tres"),
+	preload("res://examples/data/cutscenes/Cutscene_01.dc"),
+	preload("res://examples/data/cutscenes/Cutscene_02.dc"),
+	preload("res://examples/data/cutscenes/Cutscene_03.dc"),
 ]
 var current_cutscene_i = 0
 

@@ -18,6 +18,12 @@ config/icon="res://icon.svg"
 
 enabled=PackedStringArray("res://addons/dialogue_cutscene/plugin.cfg")
 
+[importer_defaults]
+
+dialogue_cutscene_data_importer={
+"character_data_path": "res://examples/data/characters"
+}
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
