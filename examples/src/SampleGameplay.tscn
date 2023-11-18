@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://examples/src/SampleGameplay.gd" id="1_plnkm"]
 [ext_resource type="Texture2D" uid="uid://ina2c6u0l23m" path="res://icon.svg" id="2_vwpbf"]
 [ext_resource type="PackedScene" uid="uid://cwyu2ghreykrb" path="res://addons/dialogue_cutscene/DialogueCutscene.tscn" id="3_iugnm"]
-[ext_resource type="Texture2D" uid="uid://ybeexlyr6f4w" path="res://addons/dialogue_cutscene/assets/NameTagRect.png" id="4_x1xpn"]
+[ext_resource type="Texture2D" uid="uid://bp6g7v8emmumg" path="res://examples/art/dialogue_box/simple_dialogue_box.png" id="4_6odva"]
 
 [node name="SampleGameplay" type="Node2D"]
 script = ExtResource("1_plnkm")
@@ -46,8 +46,8 @@ visible = false
 self_modulate = Color(1, 1, 1, 0)
 offset_right = 40.0
 offset_bottom = 40.0
-texture = ExtResource("4_x1xpn")
-patch_margin_left = 10
-patch_margin_top = 10
-patch_margin_right = 10
-patch_margin_bottom = 10
+texture = ExtResource("4_6odva")
+patch_margin_left = 24
+patch_margin_top = 24
+patch_margin_right = 24
+patch_margin_bottom = 24

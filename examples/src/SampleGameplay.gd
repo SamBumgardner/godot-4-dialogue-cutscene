@@ -13,7 +13,7 @@ func _ready():
 	$CutsceneLayer/DialogueCutscene.cutscene_finished.connect(_on_cutscene_finished)
 	
 	$CutsceneLayer/DialogueCutscene.dialogue_box_background = $CutsceneLayer/AltDialogueBoxGraphic
-	$CutsceneLayer/DialogueCutscene.dialogue_arrow_texture = preload("res://examples/art/dialogue_box/feather_pen_arrow.png")
+	$CutsceneLayer/DialogueCutscene.dialogue_arrow_texture = preload("res://examples/art/dialogue_box/simple_arrow.png")
 
 func _init_gameplay() -> void:
 	var gameplay_tween = create_tween()

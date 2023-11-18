@@ -6,6 +6,8 @@ extends Label
 ##   is_talking_changed - [member _is_talking] tracks if any text was revealed during the last displayed frame. This is emitted when its value changes.
 ##     Should be used to activate / deactivate behavior that only plays during text reveal (like talking animations)
 
+const LINES_VISIBLE = 4.0
+
 signal is_talking_changed
 signal non_whitespace_char_revealed
 
@@ -14,6 +16,7 @@ var visible_characters_set : bool = false
 var is_talking
 
 func _ready():
+	max_lines_visible = LINES_VISIBLE
 	not_whitespace_regex.compile("\\S")
 
 func _set(property, value):
@@ -54,3 +57,6 @@ func recalculate_margins(new_background : NinePatchRect):
 				anchor_offset = MARGIN_COEFFICIENT * new_background.patch_margin_top
 				anchor_value = 0
 		set_anchor_and_offset(side, anchor_value, anchor_offset)
+
+func _on_resized():
+	add_theme_font_size_override("font_size", size.y / (LINES_VISIBLE * 1.5) - 1)
