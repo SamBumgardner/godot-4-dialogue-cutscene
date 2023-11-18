@@ -30,6 +30,9 @@ var cutscene : DialogueCutsceneData:
 var dialogue_box_background : NinePatchRect:
 	set = _set_dialogue_box_background
 
+var name_tag_background : NinePatchRect:
+	set = _set_name_tag_box_background
+
 ## Set this to override the default text-advance arrow texture.
 var dialogue_arrow_texture : Texture2D:
 	set = _set_dialogue_arrow
@@ -60,6 +63,8 @@ var _is_closing : bool = false
 @onready var dialogue_display : DialogueDisplay = $DialogueContainer/DialogueDisplay
 @onready var character_portrait : AnimatedSprite2D = $Characters/Portrait
 @onready var character_mouth : AnimatedSprite2D = $Characters/Portrait/AnimatedMouth
+@onready var name_tag_nine_patch : NinePatchRect = $DialogueContainer/NameTag/NinePatchRect
+@onready var name_tag_margin_container : MarginContainer = $DialogueContainer/NameTag/MarginContainer
 
 # ======================== #
 # Built-in Virtual Methods # 
@@ -80,6 +85,8 @@ func _ready():
 		_set_dialogue_box_background(dialogue_box_background)
 	if dialogue_arrow_texture != null:
 		_set_dialogue_arrow(dialogue_arrow_texture)
+	if name_tag_background != null:
+		_set_name_tag_box_background(name_tag_background)
 	
 	init_cutscene(cutscene)
 
@@ -184,6 +191,24 @@ func _change_displayed_character(character_name : String) -> void:
 func _set_dialogue_box_background(new_graphic : NinePatchRect):
 	if dialogue_display != null:
 		dialogue_display.change_nine_patch_rect(new_graphic)
+
+func _set_name_tag_box_background(new_graphic : NinePatchRect):
+	if name_tag_nine_patch != null and name_tag_margin_container != null:
+		name_tag_nine_patch.texture = new_graphic.texture
+			
+		name_tag_nine_patch.axis_stretch_horizontal = new_graphic.axis_stretch_horizontal
+		name_tag_nine_patch.axis_stretch_vertical = new_graphic.axis_stretch_vertical
+		name_tag_nine_patch.draw_center = new_graphic.draw_center
+		name_tag_nine_patch.mouse_filter = new_graphic.mouse_filter
+		name_tag_nine_patch.patch_margin_bottom = new_graphic.patch_margin_bottom
+		name_tag_nine_patch.patch_margin_left = new_graphic.patch_margin_left
+		name_tag_nine_patch.patch_margin_right = new_graphic.patch_margin_right
+		name_tag_nine_patch.patch_margin_top = new_graphic.patch_margin_top
+
+		name_tag_margin_container.add_theme_constant_override("margin_top", new_graphic.patch_margin_top / 2)
+		name_tag_margin_container.add_theme_constant_override("margin_bottom", new_graphic.patch_margin_bottom / 2)
+		name_tag_margin_container.add_theme_constant_override("margin_left", new_graphic.patch_margin_left)
+		name_tag_margin_container.add_theme_constant_override("margin_right", new_graphic.patch_margin_right)
 
 func _set_dialogue_arrow(new_texture : Texture2D):
 	if dialogue_display != null:

@@ -38,7 +38,7 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -23.0
+offset_top = -268.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 0
@@ -52,16 +52,18 @@ theme_override_constants/margin_left = 12
 layout_mode = 2
 texture = ExtResource("4_rdqm6")
 patch_margin_left = 10
-patch_margin_top = 16
+patch_margin_top = 10
 patch_margin_right = 10
+patch_margin_bottom = 10
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="DialogueContainer/NameTag"]
 layout_mode = 2
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 16
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
 
 [node name="CharacterName" type="Label" parent="DialogueContainer/NameTag/MarginContainer"]
 layout_mode = 2
