@@ -99,6 +99,19 @@ func _input(event):
 # ============== #
 # Public Methods #
 # ============== #
+## 
+func set_graphic_overrides(
+		dialogue_bg : NinePatchRect = null, 
+		name_tag_bg : NinePatchRect = null, 
+		arrow_texture : Texture2D = null):
+	if dialogue_bg:
+		dialogue_box_background = dialogue_bg
+	if name_tag_bg:
+		name_tag_background = name_tag_bg
+	if arrow_texture:
+		dialogue_arrow_texture = arrow_texture
+	
+
 ## Uses provided [param cutscene_data] to set internal variables.
 ## Must be called (explicitly or implicitly via set [member cutscene]) before attempting [method open_cutscene]
 func init_cutscene(cutscene_data : DialogueCutsceneData):

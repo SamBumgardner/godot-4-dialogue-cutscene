@@ -12,9 +12,10 @@ func _ready():
 	_init_gameplay()
 	$CutsceneLayer/DialogueCutscene.cutscene_finished.connect(_on_cutscene_finished)
 	
-	$CutsceneLayer/DialogueCutscene.dialogue_box_background = $CutsceneLayer/AltDialogueBoxGraphic
-	$CutsceneLayer/DialogueCutscene.name_tag_background = $CutsceneLayer/AltNameTagGraphic
-	$CutsceneLayer/DialogueCutscene.dialogue_arrow_texture = preload("res://examples/art/dialogue_box/simple_arrow.png")
+	$CutsceneLayer/DialogueCutscene.set_graphic_overrides(
+		$CutsceneLayer/AltDialogueBoxGraphic,
+		$CutsceneLayer/AltNameTagGraphic,
+		preload("res://examples/art/dialogue_box/simple_arrow.png"))
 
 	# These nodes aren't needed anymore, they were just around as a convenient way to define nine-patch backgrounds.
 	$CutsceneLayer/AltDialogueBoxGraphic.queue_free()
