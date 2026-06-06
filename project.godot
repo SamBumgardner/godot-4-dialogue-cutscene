@@ -10,9 +10,20 @@ config_version=5
 
 [application]
 
-config/name="godot-4-sandbox"
+config/name="godot-4-dialogue-cutscene"
+run/main_scene="res://examples/src/SampleGameplay.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/dialogue_cutscene/plugin.cfg")
+
+[importer_defaults]
+
+dialogue_cutscene_data_importer={
+"character_data_path": "res://examples/data/characters"
+}
 
 [rendering]
 

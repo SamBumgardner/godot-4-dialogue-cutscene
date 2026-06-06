@@ -1,0 +1,19 @@
+!characters
+Gerald
+Cameron
+
+!script
+    Gerald:
+|1|This here is an example of cutscene imported from a ".dc" formatted file.
+
+|1.5|It even supports newlines and all sorts of fancy stuff.
+How many lines can we have?????? What a big mystery.|
+
+    Cameron:
+|1,0,0,curious|What's a |.5,.5,.5,curious|".dc"|1,0,0,curious| formatted file?|
+
+    Gerald:
+|1.5|That, my friend, is a mystery long-lost to time.|
+
+    Gerald:
+|1|It all began |.85|long,|.75| long,|.65| long,|.5| long,|.35| long,|.23| long,|.15| loooong |1.5|ago|1|...|
